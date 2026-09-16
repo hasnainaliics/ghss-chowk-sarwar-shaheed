@@ -1,1 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>School Events & Student Guidance | GHSS Chowk Sarwar Shaheed</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f5f8f6;
+            color: #111;
+        }
+
+        /* TOP BAR */
+
+        .top-bar {
+            background: #064f3a;
+            color: #fff;
+            padding: 9px 6%;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.6px;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #fff;
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e4ebe7;
+        }
+
+        .school-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .school-logo {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #087953;
+            color: #fff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            box-shadow: 0 7px 20px rgba(8,121,83,0.18);
+        }
+
+        .school-name {
+            color: #064f3a;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .school-subtitle {
+            margin-top: 3px;
+            color: #777;
+            font-size: 10px;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 11px 19px;
+
+            background: #087953;
+            color: #fff;
+
+            text-decoration: none;
+            border-radius: 10px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            box-shadow: 0 7px 20px rgba(8,121,83,0.18);
+
+            transition: .25s;
+        }
+
+        .home-btn span {
+            font-size: 17px;
+        }
+
+        .home-btn:hover {
+            background: #064f3a;
+            transform: translateY(-2px);
+        }
+
+
+        /* HERO */
+
+        .hero {
+            margin: 35px 6% 0;
+            padding: 75px 8%;
+
+            border-radius: 25px;
+
+            color: #fff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087953,
+                    #064f3a
+                );
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+
+            width: 360px;
+            height: 360px;
+
+            border-radius: 50%;
+
+            right: -120px;
+            top: -150px;
+
+            background: rgba(247,217,107,0.12);
+        }
+
+        .hero::after {
+            content: "EVENTS";
+
+            position: absolute;
+
+            right: 7%;
+            bottom: 25px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 65px;
+            font-weight: 800;
+
+            color: rgba(255,255,255,0.06);
+        }
+
+        .hero small {
+            color: #f7d96b;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            margin-top: 15px;
+
+            max-width: 800px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: clamp(40px, 6vw, 70px);
+
+            line-height: 1.05;
+        }
+
+        .hero h1 span {
+            color: #f7d96b;
+        }
+
+        .hero p {
+            max-width: 650px;
+
+            margin-top: 20px;
+
+            color: rgba(255,255,255,.86);
+
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+
+        /* MAIN */
+
+        .container {
+            max-width: 1100px;
+
+            margin: -35px auto 70px;
+
+            padding: 0 20px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* FEATURE CARD */
+
+        .featured-event {
+            background: #fff;
+
+            padding: 42px;
+
+            border-radius: 22px;
+
+            box-shadow: 0 20px 60px rgba(0,0,0,.08);
+
+            border: 1px solid #e2ebe6;
+        }
+
+        .event-label {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            background: #f7d96b;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .featured-event h2 {
+            margin-top: 18px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: clamp(30px,4vw,48px);
+
+            line-height: 1.15;
+        }
+
+        .featured-event > p {
+            margin-top: 12px;
+
+            color: #666;
+
+            line-height: 1.8;
+        }
+
+
+        /* IMAGE AREA */
+
+        .event-image {
+            margin-top: 30px;
+
+            width: 100%;
+            height: 330px;
+
+            border-radius: 17px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background: #dfe9e4;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .image-caption {
+            position: absolute;
+
+            left: 20px;
+            bottom: 18px;
+
+            padding: 9px 14px;
+
+            background: rgba(6,79,58,.90);
+
+            color: #fff;
+
+            border-radius: 8px;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* EVENT INFORMATION */
+
+        .event-info {
+            margin-top: 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 15px;
+        }
+
+        .event-info-box {
+            padding: 20px;
+
+            background: #f7faf8;
+
+            border: 1px solid #e3ebe7;
+
+            border-radius: 13px;
+        }
+
+        .event-info-box small {
+            color: #087953;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .event-info-box strong {
+            display: block;
+
+            margin-top: 7px;
+
+            font-size: 14px;
+        }
+
+
+        /* SECTION TITLE */
+
+        .section-title {
+            margin-top: 70px;
+
+            text-align: center;
+        }
+
+        .section-title small {
+            color: #087953;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            margin-top: 8px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 40px;
+        }
+
+        .section-title p {
+            max-width: 650px;
+
+            margin: 10px auto 0;
+
+            color: #666;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+
+        /* TIPS */
+
+        .tips-grid {
+            margin-top: 30px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 20px;
+        }
+
+        .tip-card {
+            background: #fff;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            border: 1px solid #e2ebe6;
+
+            box-shadow: 0 12px 35px rgba(0,0,0,.045);
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: .25s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow: 0 18px 40px rgba(0,0,0,.08);
+        }
+
+        .tip-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 110px;
+            height: 110px;
+
+            border-radius: 50%;
+
+            background: #f7d96b;
+
+            opacity: .12;
+
+            right: -35px;
+            top: -35px;
+        }
+
+        .class-number {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: #087953;
+
+            color: #fff;
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .tip-card h3 {
+            margin-top: 18px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 27px;
+        }
+
+        .tip-card .tagline {
+            margin-top: 5px;
+
+            color: #087953;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: .8px;
+        }
+
+        .tip-card p {
+            margin-top: 14px;
+
+            color: #555;
+
+            font-size: 13px;
+
+            line-height: 1.85;
+        }
+
+        .tip-list {
+            margin-top: 17px;
+
+            padding-left: 18px;
+
+            color: #333;
+
+            font-size: 12px;
+
+            line-height: 2;
+        }
+
+        .tip-list li::marker {
+            color: #087953;
+        }
+
+
+        /* WINTER NOTICE */
+
+        .winter {
+            margin-top: 50px;
+
+            padding: 38px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #064f3a,
+                    #087953
+                );
+
+            color: #fff;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .winter::after {
+            content: "❄";
+
+            position: absolute;
+
+            right: 6%;
+            top: 10px;
+
+            font-size: 120px;
+
+            color: rgba(255,255,255,.07);
+        }
+
+        .winter small {
+            color: #f7d96b;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .winter h2 {
+            margin-top: 12px;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 34px;
+        }
+
+        .winter p {
+            max-width: 750px;
+
+            margin-top: 10px;
+
+            color: rgba(255,255,255,.87);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* URDU GUIDANCE */
+
+        .urdu-section {
+            margin-top: 45px;
+
+            padding: 35px 30px;
+
+            background: #fffbea;
+
+            border: 1px solid #efdf91;
+
+            border-radius: 18px;
+
+            text-align: right;
+
+            direction: rtl;
+        }
+
+        .urdu-section .urdu-label {
+            display: inline-block;
+
+            padding: 5px 12px;
+
+            background: #f7d96b;
+
+            color: #111;
+
+            border-radius: 6px;
+
+            font-family: 'Noto Nastaliq Urdu', serif;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .urdu-section h2 {
+            margin-top: 18px;
+
+            color: #064f3a;
+
+            font-family: 'Noto Nastaliq Urdu', serif;
+
+            font-size: 27px;
+
+            line-height: 2;
+        }
+
+        .urdu-section p {
+            margin-top: 8px;
+
+            color: #222;
+
+            font-family: 'Noto Nastaliq Urdu', serif;
+
+            font-size: 18px;
+
+            font-weight: 600;
+
+            line-height: 2.4;
+        }
+
+
+        /* LIFE MESSAGE */
+
+        .life-message {
+            margin-top: 50px;
+
+            text-align: center;
+        }
+
+        .life-message h2 {
+            font-family: 'Playfair Display', serif;
+
+            font-size: 36px;
+        }
+
+        .life-message p {
+            max-width: 700px;
+
+            margin: 12px auto;
+
+            color: #666;
+
+            line-height: 1.8;
+
+            font-size: 13px;
+        }
+
+
+        /* BOTTOM CARDS */
+
+        .values {
+            margin-top: 30px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 13px;
+        }
+
+        .value-card {
+            padding: 22px 15px;
+
+            text-align: center;
+
+            background: #fff;
+
+            border: 1px solid #e3ebe7;
+
+            border-radius: 13px;
+        }
+
+        .value-icon {
+            font-size: 26px;
+        }
+
+        .value-card h4 {
+            margin-top: 10px;
+
+            font-size: 13px;
+        }
+
+        .value-card p {
+            margin-top: 6px;
+
+            color: #777;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        /* SECOND IMAGE */
+
+        .second-photo {
+            margin-top: 45px;
+
+            height: 270px;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .second-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .second-photo span {
+            position: absolute;
+
+            left: 20px;
+            bottom: 18px;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            background: rgba(6,79,58,.9);
+
+            color: #fff;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* BACK BUTTON */
+
+        .back-area {
+            text-align: center;
+
+            margin-top: 45px;
+        }
+
+        .back-btn {
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            background: #087953;
+
+            color: #fff;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            transition: .25s;
+        }
+
+        .back-btn:hover {
+            background: #064f3a;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 30px 20px;
+
+            color: #777;
+
+            font-size: 11px;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width:700px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            .school-name {
+                font-size: 12px;
+            }
+
+            .school-subtitle {
+                font-size: 8px;
+            }
+
+            .school-logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .home-btn {
+                padding: 10px 14px;
+            }
+
+            .hero {
+                margin: 20px 4% 0;
+
+                padding: 50px 25px;
+
+                border-radius: 18px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .container {
+                margin-top: -20px;
+
+                padding: 0 12px;
+            }
+
+            .featured-event {
+                padding: 27px 20px;
+            }
+
+            .event-image {
+                height: 230px;
+            }
+
+            .event-info {
+                grid-template-columns: 1fr;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .winter {
+                padding: 28px 22px;
+            }
+
+            .winter h2 {
+                font-size: 29px;
+            }
+
+            .urdu-section {
+                padding: 30px 20px;
+            }
+
+            .urdu-section p {
+                font-size: 16px;
+            }
+
+        }
+
+
+        @media(max-width:430px) {
+
+            .school-subtitle {
+                display: none;
+            }
+
+            .school-name {
+                font-size: 10px;
+            }
+
+            .home-btn {
+                font-size: 10px;
+                padding: 9px 11px;
+            }
+
+            .hero h1 {
+                font-size: 37px;
+            }
+
+            .event-image {
+                height: 200px;
+            }
+
+            .values {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+        OFFICIAL SCHOOL EVENTS & STUDENT GUIDANCE
+    </div>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="school-brand">
+
+            <div class="school-logo">
+                GHSS
+            </div>
+
+            <div>
+
+                <div class="school-name">
+                    Government Higher Secondary School
+                </div>
+
+                <div class="school-subtitle">
+                    Chowk Sarwar Shaheed
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <a href="index.html" class="home-btn">
+
+            <span>⌂</span>
+
+            Home
+
+        </a>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <small>
+            SCHOOL EVENTS
+        </small>
+
+        <h1>
+            Learn.
+            <span>Grow.</span>
+            Become.
+        </h1>
+
+        <p>
+            School is not only about books and examinations.
+            It is also about developing confidence, discipline,
+            kindness, responsibility and a positive attitude towards life.
+        </p>
+
+    </section>
+
+
+
+    <main class="container">
+
+
+        <!-- FEATURED EVENT -->
+
+        <section class="featured-event">
+
+            <span class="event-label">
+                STUDENT DEVELOPMENT
+            </span>
+
+            <h2>
+                New Academic Session
+            </h2>
+
+            <p>
+                A new class is a new opportunity. Every student should
+                use this academic year to improve knowledge, habits,
+                character and confidence.
+            </p>
+
+
+            <!-- PHOTO 1 -->
+
+            <div class="event-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=85"
+                    alt="Students studying in a classroom"
+                >
+
+                <div class="image-caption">
+                    Learning Today • Building Tomorrow
+                </div>
+
+            </div>
+
+
+            <!-- EVENT INFO -->
+
+            <div class="event-info">
+
+                <div class="event-info-box">
+
+                    <small>
+                        FOCUS
+                    </small>
+
+                    <strong>
+                        Academic Growth
+                    </strong>
+
+                </div>
+
+
+                <div class="event-info-box">
+
+                    <small>
+                        MESSAGE
+                    </small>
+
+                    <strong>
+                        Stay Consistent
+                    </strong>
+
+                </div>
+
+
+                <div class="event-info-box">
+
+                    <small>
+                        GOAL
+                    </small>
+
+                    <strong>
+                        Become Your Best
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TIPS TITLE -->
+
+        <section class="section-title">
+
+            <small>
+                CLASS-WISE GUIDANCE
+            </small>
+
+            <h2>
+                A Message For Every Student
+            </h2>
+
+            <p>
+                Every class has a different stage of academic life.
+                Choose your priorities wisely and make every day count.
+            </p>
+
+        </section>
+
+
+
+        <!-- CLASS TIPS -->
+
+        <section class="tips-grid">
+
+
+            <!-- CLASS 9 -->
+
+            <article class="tip-card">
+
+                <div class="class-number">
+                    09
+                </div>
+
+                <h3>
+                    Class 9th
+                </h3>
+
+                <div class="tagline">
+                    BUILD YOUR FOUNDATION
+                </div>
+
+                
