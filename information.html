@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Information | GHSS Chowk Sarwar Shaheed</title>
+    <title>School Information | GHSS Chowk Sarwar Shaheed</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -17,15 +16,54 @@
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: #f4f8f6;
+            background: #f5f7f6;
             color: #173b35;
         }
 
-        .header {
-            background: linear-gradient(135deg, #075e54, #0b8f7d);
-            color: white;
+        .hero {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top right, #ffffff25, transparent 35%),
+                linear-gradient(135deg, #064f47, #087d6d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            background: #ffd83d;
+            border-radius: 50%;
+            top: -120px;
+            right: -90px;
+            opacity: .18;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: white;
+            border-radius: 50%;
+            bottom: -120px;
+            left: -80px;
+            opacity: .10;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 850px;
             text-align: center;
-            padding: 55px 20px;
+            color: white;
+            position: relative;
+            z-index: 2;
         }
 
         .home {
@@ -36,69 +74,105 @@
             padding: 9px 22px;
             border-radius: 30px;
             font-weight: 600;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px #0002;
         }
 
-        .header h1 {
+        .icon {
+            font-size: 55px;
+            margin-bottom: 5px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #ffd83d;
+            color: #173b35;
+            padding: 7px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 42px;
+            line-height: 1.2;
             margin: 0;
-            font-size: 32px;
+            font-weight: 800;
         }
 
-        .header p {
-            margin: 10px auto 0;
+        h1 span {
+            color: #ffd83d;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            margin: 15px auto 28px;
             max-width: 650px;
-            font-size: 15px;
-            opacity: 0.95;
-        }
-
-        .card {
-            max-width: 850px;
-            margin: 35px auto;
-            padding: 35px 25px;
-            background: white;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-        }
-
-        .card h2 {
-            color: #075e54;
-            font-size: 24px;
-            margin-top: 0;
-        }
-
-        .card p {
-            line-height: 1.9;
-            font-size: 15px;
-            color: #555;
+            line-height: 1.8;
+            opacity: .95;
         }
 
         .highlight {
-            margin-top: 22px;
-            padding: 16px;
-            background: #e8f6f2;
-            border-radius: 12px;
+            display: inline-block;
+            background: white;
             color: #075e54;
-            font-weight: 600;
+            padding: 15px 25px;
+            border-radius: 16px;
+            font-weight: 700;
+            box-shadow: 0 10px 35px #0002;
+            margin-bottom: 28px;
         }
 
-        footer {
-            margin-top: 50px;
-            background: #075e54;
-            color: white;
-            text-align: center;
-            padding: 20px;
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: #ffffff15;
+            border: 1px solid #ffffff35;
+            backdrop-filter: blur(8px);
+            padding: 13px 18px;
+            border-radius: 14px;
             font-size: 13px;
+            font-weight: 500;
+        }
+
+        .bottom {
+            margin-top: 32px;
+            font-size: 13px;
+            opacity: .8;
         }
 
         @media (max-width: 600px) {
-            .header h1 {
-                font-size: 25px;
+
+            .hero {
+                min-height: 100vh;
+                padding: 20px;
             }
 
-            .card {
-                margin: 20px 12px;
-                padding: 28px 18px;
+            h1 {
+                font-size: 30px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .icon {
+                font-size: 45px;
+            }
+
+            .highlight {
+                font-size: 14px;
+                padding: 13px 17px;
+            }
+
+            .feature {
+                width: 100%;
             }
         }
     </style>
@@ -106,51 +180,50 @@
 
 <body>
 
-    <header class="header">
+<section class="hero">
+
+    <div class="box">
 
         <a href="index.html" class="home">🏠 Home</a>
 
-        <h1>Government Higher Secondary School</h1>
+        <div class="icon">🏫</div>
 
-        <p>Chowk Sarwar Shaheed</p>
+        <div class="tag">OFFICIAL SCHOOL WEBSITE</div>
 
-    </header>
+        <h1>
+            Government Higher Secondary<br>
+            <span>School Chowk Sarwar Shaheed</span>
+        </h1>
 
+        <p class="subtitle">
+            Welcome to our official school website — your place
+            for important school information, latest updates
+            and useful announcements.
+        </p>
 
-    <main>
+        <div class="highlight">
+            ✨ Everything You Need, All in One Place
+        </div>
 
-        <section class="card">
+        <div class="features">
 
-            <h2>📚 School Information</h2>
+            <div class="feature">📢 Latest Updates</div>
 
-            <p>
-                Welcome to the official website of
-                <strong>Government Higher Secondary School
-                Chowk Sarwar Shaheed.</strong>
-            </p>
+            <div class="feature">📅 School Events</div>
 
-            <p>
-                This website is designed to provide students,
-                parents and visitors with useful and updated
-                information about our school.
-            </p>
+            <div class="feature">📚 Academic Information</div>
 
-            <div class="highlight">
-                ✨ School Updates • Events • Results • Notices •
-                Academic Information
-            </div>
+            <div class="feature">🏆 Results & Achievements</div>
 
-        </section>
+        </div>
 
-    </main>
+        <div class="bottom">
+            Education • Discipline • Excellence
+        </div>
 
+    </div>
 
-    <footer>
-        Government Higher Secondary School Chowk Sarwar Shaheed
-        <br>
-        Education • Discipline • Excellence
-    </footer>
+</section>
 
 </body>
-
-</html>
+    </html>
