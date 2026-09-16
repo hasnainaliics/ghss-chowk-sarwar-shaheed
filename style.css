@@ -734,9 +734,8 @@ a {
     }
 
     .hero h2 {
-        font-size: 36px;
-        line-height: 1.08;
-    }
+        font-size: 32px;
+        line-height: 1.12;
 
     .hero p {
         font-size: 14px;
