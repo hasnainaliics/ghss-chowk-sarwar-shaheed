@@ -675,3 +675,45 @@ a {
 .news-card:hover h3 {
     color: #0b7a59;
         }
+.developer {
+    margin-top: 20px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.4px;
+}
+
+.developer strong {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    overflow: hidden;
+    padding: 2px 4px;
+}
+
+.developer strong::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.8),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: shine 3.5s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    35%, 100% {
+        left: 150%;
+    }
+    }
