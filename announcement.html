@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>School Announcement | GHSS Chowk Sarwar Shaheed</title>
+    <title>Class 12th Promotion Fee Announcement | GHSS Chowk Sarwar Shaheed</title>
+
+    <!-- PREMIUM FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
 
     <style>
+
+        /* =========================================
+           BASIC RESET
+        ========================================= */
 
         * {
             margin: 0;
@@ -14,453 +31,517 @@
             box-sizing: border-box;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f8f6;
-            color: #172033;
+
+            font-family: 'DM Sans', sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(18, 137, 99, 0.08),
+                    transparent 35%
+                ),
+                #f5f8f6;
+
+            color: #17251f;
+
             line-height: 1.7;
+
         }
 
-        /* ================= HEADER ================= */
+
+        a {
+            text-decoration: none;
+        }
+
+
+
+        /* =========================================
+           TOP BAR
+        ========================================= */
+
+        .top-bar {
+
+            background: #052d22;
+
+            color: rgba(255,255,255,0.75);
+
+            padding: 9px 6%;
+
+            font-size: 11px;
+
+            letter-spacing: 0.8px;
+
+            text-align: center;
+
+        }
+
+
+        .top-bar strong {
+
+            color: #f7d96b;
+
+        }
+
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
 
         .header {
-            background: #ffffff;
-            padding: 18px 6%;
+
+            background: rgba(255,255,255,0.97);
+
+            padding: 17px 6%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
-            gap: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+            gap: 25px;
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,0.07);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
         }
+
 
         .logo-area {
+
             display: flex;
+
             align-items: center;
-            gap: 13px;
+
+            gap: 14px;
+
         }
+
 
         .school-logo {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: #0b5d45;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: bold;
-        }
 
-        .school-name h1 {
-            font-size: 18px;
-            color: #172033;
-        }
+            width: 57px;
 
-        .school-name p {
-            font-size: 13px;
-            color: #0b7a59;
-            font-weight: bold;
-        }
+            height: 57px;
 
-        .home-link {
-            padding: 11px 18px;
-            border-radius: 7px;
-            background: #0b7a59;
-            color: white;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+            border-radius: 18px;
 
-        .home-link:hover {
-            background: #075b42;
-            transform: translateY(-2px);
-        }
-
-        /* ================= HERO ================= */
-
-        .announcement-hero {
             background:
                 linear-gradient(
                     135deg,
-                    #063d2e,
-                    #0b7a59
+                    #075b42,
+                    #0c956c
                 );
 
             color: white;
-            padding: 75px 20px;
-            text-align: center;
-        }
 
-        .announcement-label {
-            display: inline-block;
-            padding: 8px 17px;
-            border: 1px solid rgba(255,255,255,0.4);
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .announcement-hero h2 {
-            font-size: clamp(35px, 6vw, 60px);
-            line-height: 1.1;
-            margin-bottom: 15px;
-        }
-
-        .announcement-hero p {
-            font-size: 15px;
-            color: rgba(255,255,255,0.85);
-        }
-
-        /* ================= ANNOUNCEMENT ================= */
-
-        .announcement-container {
-            width: 90%;
-            max-width: 900px;
-            margin: -45px auto 80px;
-            position: relative;
-        }
-
-        .announcement-card {
-            background: white;
-            border-radius: 18px;
-            padding: 45px;
-            box-shadow: 0 18px 50px rgba(0,0,0,0.10);
-            border-top: 5px solid #0b7a59;
-        }
-
-        .notice-meta {
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
-            gap: 20px;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #e9edf2;
+
+            justify-content: center;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            box-shadow:
+                0 8px 20px rgba(7,91,66,0.25);
+
         }
+
+
+        .school-name h1 {
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 18px;
+
+            line-height: 1.2;
+
+            color: #12251e;
+
+        }
+
+
+        .school-name p {
+
+            margin-top: 3px;
+
+            color: #087953;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+        }
+
+
+        .home-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            background: #087953;
+
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 7px 18px rgba(8,121,83,0.18);
+
+        }
+
+
+        .home-btn:hover {
+
+            background: #064f3a;
+
+            transform: translateY(-2px);
+
+        }
+
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 90px 20px 115px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(126,226,187,0.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(247,217,107,0.12),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    135deg,
+                    #052d22,
+                    #087953
+                );
+
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+
+            height: 280px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+
+            top: -120px;
+
+            right: -80px;
+
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+
+            bottom: -90px;
+
+            left: -50px;
+
+        }
+
+
+        .official-badge {
+
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 16px;
+
+            border: 1px solid rgba(255,255,255,0.3);
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.08);
+
+            backdrop-filter: blur(8px);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .official-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            background: #f7d96b;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 5px rgba(247,217,107,0.12);
+
+        }
+
+
+        .hero h2 {
+
+            position: relative;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: clamp(42px, 7vw, 76px);
+
+            line-height: 1.04;
+
+            letter-spacing: -1px;
+
+        }
+
+
+        .hero h2 span {
+
+            color: #f7d96b;
+
+        }
+
+
+        .hero-description {
+
+            position: relative;
+
+            max-width: 650px;
+
+            margin: 20px auto 0;
+
+            color: rgba(255,255,255,0.82);
+
+            font-size: 15px;
+
+        }
+
+
+
+        /* =========================================
+           NOTICE CONTAINER
+        ========================================= */
+
+        .notice-wrapper {
+
+            width: 90%;
+
+            max-width: 930px;
+
+            margin: -65px auto 90px;
+
+            position: relative;
+
+            z-index: 5;
+
+        }
+
+
+        .notice-card {
+
+            background: white;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(5,45,34,0.13);
+
+            border: 1px solid #e4ebe7;
+
+        }
+
+
+
+        /* =========================================
+           NOTICE HEADER
+        ========================================= */
+
+        .notice-header {
+
+            padding: 28px 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            border-bottom: 1px solid #e8eeeb;
+
+        }
+
 
         .notice-type {
-            color: #0b7a59;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #087953;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
         }
+
+
+        .notice-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #e8f7f1;
+
+            font-size: 18px;
+
+        }
+
 
         .notice-date {
-            color: #687386;
-            font-size: 12px;
-        }
 
-        .announcement-card h1 {
-            font-size: clamp(25px, 4vw, 38px);
-            line-height: 1.2;
-            margin-bottom: 25px;
-        }
+            color: #7a867f;
 
-        .announcement-card p {
-            color: #5f6b7d;
-            font-size: 15px;
-            margin-bottom: 18px;
-        }
-
-        .important-box {
-            margin: 30px 0;
-            padding: 22px;
-            background: #eef8f4;
-            border-left: 4px solid #0b7a59;
-            border-radius: 8px;
-        }
-
-        .important-box strong {
-            display: block;
-            color: #075b42;
-            margin-bottom: 8px;
-        }
-
-        .important-box p {
-            margin-bottom: 0;
-        }
-
-        .notice-signature {
-            margin-top: 35px;
-            padding-top: 25px;
-            border-top: 1px solid #e9edf2;
-        }
-
-        .notice-signature strong {
-            color: #172033;
-        }
-
-        .notice-signature p {
-            margin: 3px 0;
-            font-size: 13px;
-        }
-
-        /* ================= BACK BUTTON ================= */
-
-        .back-area {
-            text-align: center;
-            margin-top: 35px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            padding: 13px 23px;
-            border: 1px solid #0b7a59;
-            border-radius: 7px;
-            color: #0b7a59;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background: #0b7a59;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* ================= FOOTER ================= */
-
-        .footer {
-            background: #041c16;
-            color: white;
-            padding: 40px 6% 20px;
-            text-align: center;
-        }
-
-        .footer h3 {
-            margin-bottom: 8px;
-        }
-
-        .footer p {
-            color: rgba(255,255,255,0.6);
-            font-size: 12px;
-        }
-
-        .copyright {
-            margin-top: 25px;
-            padding-top: 18px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.45);
             font-size: 11px;
-        }
 
-        /* ================= MOBILE ================= */
-
-        @media (max-width: 650px) {
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .home-link {
-                align-self: flex-start;
-            }
-
-            .announcement-hero {
-                padding: 60px 20px;
-            }
-
-            .announcement-card {
-                padding: 28px 22px;
-            }
-
-            .notice-meta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
+            font-weight: 600;
 
         }
 
-    </style>
-</head>
 
-<body>
 
+        /* =========================================
+           NOTICE BODY
+        ========================================= */
 
-    <!-- HEADER -->
+        .notice-body {
 
-    <header class="header">
+            padding: 48px;
 
-        <div class="logo-area">
+        }
 
-            <div class="school-logo">
-                GHSS
-            </div>
 
-            <div class="school-name">
+        .notice-title {
 
-                <h1>
-                    Government Higher Secondary School
-                </h1>
+            font-family: 'Playfair Display', serif;
 
-                <p>
-                    Chowk Sarwar Shaheed
-                </p>
+            font-size: clamp(30px, 5vw, 48px);
 
-            </div>
+            line-height: 1.15;
 
-        </div>
+            color: #14251e;
 
+            margin-bottom: 25px;
 
-        <a href="index.html" class="home-link">
-            Home
-        </a>
+        }
 
-    </header>
 
+        .notice-title span {
 
+            position: relative;
 
-    <!-- ANNOUNCEMENT HERO -->
+            z-index: 1;
 
-    <section class="announcement-hero">
+        }
 
-        <span class="announcement-label">
-            SCHOOL ANNOUNCEMENT
-        </span>
 
-        <h2>
-            Important Announcement
-        </h2>
-
-        <p>
-            Government Higher Secondary School Chowk Sarwar Shaheed
-        </p>
-
-    </section>
-
-
-
-    <!-- ANNOUNCEMENT CONTENT -->
-
-    <main class="announcement-container">
-
-        <article class="announcement-card">
-
-
-            <div class="notice-meta">
-
-                <span class="notice-type">
-                    📢 OFFICIAL NOTICE
-                </span>
-
-                <span class="notice-date">
-                    Date: 16 September 2026
-                </span>
-
-            </div>
-
-
-            <h1>
-                Important School Announcement
-            </h1>
-
-
-            <p>
-                Dear Students and Parents,
-            </p>
-
-
-            <p>
-                This section is used for important announcements
-                from Government Higher Secondary School Chowk Sarwar Shaheed.
-                Students and parents are requested to regularly check
-                this page for the latest school notices and updates.
-            </p>
-
-
-            <div class="important-box">
-
-                <strong>
-                    Important Information
-                </strong>
-
-                <p>
-                    Any important information regarding classes,
-                    examinations, school activities, schedules or
-                    other school matters will be published here.
-                </p>
-
-            </div>
-
-
-            <p>
-                Students are advised to stay connected with the school
-                and follow all official instructions and announcements.
-            </p>
-
-
-            <p>
-                For further information, please contact the school
-                administration.
-            </p>
-
-
-            <div class="notice-signature">
-
-                <strong>
-                    School Administration
-                </strong>
-
-                <p>
-                    Government Higher Secondary School
-                </p>
-
-                <p>
-                    Chowk Sarwar Shaheed
-                </p>
-
-            </div>
-
-
-        </article>
-
-
-        <!-- BACK BUTTON -->
-
-        <div class="back-area">
-
-            <a href="index.html#updates" class="back-btn">
-                ← Back to Updates
-            </a>
-
-        </div>
-
-    </main>
-
-
-
-    <!-- FOOTER -->
-
-    <footer class="footer">
-
-        <h3>
-            GHSS Chowk Sarwar Shaheed
-        </h3>
-
-        <p>
-            Quality Education • Excellence • Future
-        </p>
-
-        <div class="copyright">
-            © 2026 Government Higher Secondary School Chowk Sarwar Shaheed.
-            All Rights Reserved.
-        </div>
-
-    </footer>
-
-
-</body>
-  </html>
+        .notice-title span::after {
