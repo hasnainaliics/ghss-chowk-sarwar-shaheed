@@ -760,3 +760,63 @@ a {
         left: 150%;
     }
 }
+/* ===== FINAL MOBILE HEADER + HERO FIX ===== */
+
+@media (max-width: 600px) {
+
+    /* Header کو compact کرنا */
+    .header {
+        padding-bottom: 8px !important;
+    }
+
+    /* Navbar کو اوپر لانا */
+    .header .navbar {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        height: 55px !important;
+        gap: 14px !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+    }
+
+    .header .navbar a {
+        font-size: 15px !important;
+    }
+
+    /* Updates button */
+    .header .navbar .update-link {
+        padding: 7px 13px !important;
+        border-radius: 18px !important;
+    }
+
+    .header .new-badge {
+        top: -7px !important;
+        right: -4px !important;
+        font-size: 7px !important;
+        padding: 3px 5px !important;
+    }
+
+    /* ===== HERO کو تھوڑا چھوٹا کرنا ===== */
+
+    .hero {
+        min-height: 0 !important;
+        height: 700px !important;
+        box-sizing: border-box !important;
+        padding: 45px 35px 35px !important;
+    }
+
+    .hero-content h2 {
+        font-size: 38px !important;
+        line-height: 1.08 !important;
+        margin-top: 15px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .hero-content p {
+        font-size: 16px !important;
+        line-height: 1.45 !important;
+        margin-bottom: 22px !important;
+    }
+
+        }
