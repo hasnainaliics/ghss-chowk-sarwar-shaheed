@@ -760,3 +760,38 @@ a {
         left: 150%;
     }
 }
+/* ===== Mobile Navbar & Hero Adjustment ===== */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 3px 0;
+        gap: 16px;
+    }
+
+    .navbar a {
+        font-size: 15px;
+    }
+
+    .navbar .update-link {
+        padding: 7px 13px;
+    }
+
+    /* Hero کو تھوڑا compact کرنا */
+    .hero {
+        min-height: 620px;
+        padding-top: 55px;
+        padding-bottom: 45px;
+    }
+
+    .hero-content h2 {
+        font-size: 44px;
+        line-height: 1.08;
+    }
+
+    .hero-content p {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    }
