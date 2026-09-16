@@ -1257,3 +1257,11 @@ a {
 
     .section-heading h2 {
   
+/* Urdu Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap');
+
+.feature-card {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Noto Nastaliq Urdu', serif;
+       }
