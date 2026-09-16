@@ -65,16 +65,3 @@ if (copyright) {
         `© ${year} Government Higher Secondary School Chowk Sarwar Shaheed. All Rights Reserved.`;
     }
 
-// ===============================
-// NOTICE DETAILS
-// ===============================
-
-function openAnnouncement() {
-
-    alert(
-        "School Announcements\n\n" +
-        "Important school announcements and official notices will be published here.\n\n" +
-        "Details will be updated by the school administration."
-    );
-
-}
