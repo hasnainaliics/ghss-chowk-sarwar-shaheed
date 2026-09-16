@@ -771,3 +771,408 @@ a {
         text-align: center;
     }
     }
+/* =========================================
+   PREMIUM SCHOOL FEATURES
+========================================= */
+
+.school-features {
+    width: 100%;
+    padding: 85px 5% 95px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(11, 139, 100, 0.12),
+            transparent 45%
+        ),
+        #f7f9fc;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* HEADING */
+
+.features-heading {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 45px;
+
+    animation: featureHeading 0.9s ease both;
+}
+
+.features-heading span {
+    color: #0b8b64;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.features-heading h2 {
+    margin-top: 10px;
+    color: #172033;
+
+    font-size: clamp(26px, 4vw, 42px);
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.features-heading h2 strong {
+    display: block;
+    color: #0b7053;
+}
+
+.features-heading p {
+    margin-top: 13px;
+
+    color: #748092;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   FOUR CARDS
+========================================= */
+
+.school-features .quick-info {
+    width: 100%;
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    background: transparent;
+
+    border-radius: 0;
+    box-shadow: none;
+
+    overflow: visible;
+
+    gap: 18px;
+}
+
+
+/* CARD */
+
+.school-features .info-card {
+    position: relative;
+
+    min-height: 315px;
+
+    padding: 30px 24px;
+
+    border: 1px solid rgba(11, 93, 69, 0.10);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #f8fcfa 100%
+        );
+
+    box-shadow:
+        0 10px 30px rgba(19, 42, 35, 0.07);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.45s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.45s ease,
+        border-color 0.45s ease;
+
+    animation: featureCardIn 0.8s ease both;
+}
+
+
+/* STAGGER */
+
+.school-features .info-card:nth-child(1) {
+    animation-delay: .10s;
+}
+
+.school-features .info-card:nth-child(2) {
+    animation-delay: .20s;
+}
+
+.school-features .info-card:nth-child(3) {
+    animation-delay: .30s;
+}
+
+.school-features .info-card:nth-child(4) {
+    animation-delay: .40s;
+}
+
+
+/* TOP GREEN LIGHT */
+
+.school-features .info-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: linear-gradient(
+        90deg,
+        #075c45,
+        #24b887,
+        #075c45
+    );
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform .45s ease;
+}
+
+
+/* SHINE EFFECT */
+
+.school-features .info-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: -80%;
+    left: -100%;
+
+    width: 60%;
+    height: 260%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.75),
+        transparent
+    );
+
+    transform: rotate(20deg);
+
+    transition: left .8s ease;
+
+    pointer-events: none;
+}
+
+
+/* HOVER */
+
+.school-features .info-card:hover {
+    transform: translateY(-12px);
+
+    border-color: rgba(11, 139, 100, .28);
+
+    box-shadow:
+        0 20px 45px rgba(19, 42, 35, .13),
+        0 0 0 1px rgba(11, 139, 100, .05);
+}
+
+
+.school-features .info-card:hover::before {
+    transform: scaleX(1);
+}
+
+
+.school-features .info-card:hover::after {
+    left: 140%;
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.school-features .info-icon {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: linear-gradient(
+        145deg,
+        #e3f7ef,
+        #ffffff
+    );
+
+    font-size: 31px;
+
+    box-shadow:
+        0 7px 20px rgba(11, 139, 100, .10);
+
+    margin-bottom: 25px;
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+}
+
+
+.school-features .info-card:hover .info-icon {
+    transform:
+        translateY(-5px)
+        rotate(-4deg)
+        scale(1.08);
+
+    box-shadow:
+        0 12px 25px rgba(11, 139, 100, .18);
+}
+
+
+/* NUMBER */
+
+.school-features .info-number {
+    position: absolute;
+
+    top: 25px;
+    right: 23px;
+
+    color: #dcece6;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    transition: color .4s ease;
+}
+
+
+.school-features .info-card:hover .info-number {
+    color: #c5e4d9;
+}
+
+
+/* TITLE */
+
+.school-features .info-card h3 {
+    position: relative;
+
+    margin: 0 0 10px;
+
+    color: #172033;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    transition: color .3s ease;
+}
+
+
+.school-features .info-card:hover h3 {
+    color: #087654;
+}
+
+
+/* DESCRIPTION */
+
+.school-features .info-card p {
+    position: relative;
+
+    margin: 0;
+
+    color: #697386;
+
+    font-size: 13px;
+
+    line-height: 1.75;
+}
+
+
+/* GREEN LINE */
+
+.card-line {
+    width: 35px;
+    height: 3px;
+
+    margin-top: 22px;
+
+    border-radius: 20px;
+
+    background: #0b8b64;
+
+    transition:
+        width .45s ease,
+        box-shadow .45s ease;
+}
+
+
+.school-features .info-card:hover .card-line {
+    width: 70px;
+
+    box-shadow:
+        0 0 12px rgba(11, 139, 100, .35);
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes featureCardIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes featureHeading {
+
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .school-features {
+        padding: 70px 5% 80px;
+    }
+
+    .school-features .quick-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .school-features .info-card {
+        min-height: 300px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 550px) {
