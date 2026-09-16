@@ -665,4 +665,13 @@ a {
     .gallery-item {
         height: 230px;
     }
-  }
+  
+.news-card {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.news-card:hover h3 {
+    color: #0b7a59;
+        }
