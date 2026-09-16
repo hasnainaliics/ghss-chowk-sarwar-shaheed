@@ -679,12 +679,12 @@ a {
     text-align: center !important;
     width: 100%;
     }
- /* ===== NEW PREMIUM NAVBAR ===== */
+ /* ===== FINAL NAVBAR ===== */
 
 .navbar {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 16px;
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
@@ -702,7 +702,6 @@ a {
     color: #172033;
     font-weight: 700;
     font-size: 16px;
-    position: relative;
 }
 
 /* ===== UPDATES ===== */
@@ -711,53 +710,53 @@ a {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 7px;
     background: #071a17;
-    color: #ffffff;
-    padding: 9px 16px;
-    border-radius: 22px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.22);
 }
 
-/* NEW badge */
+/* NEW */
 
 .new-badge {
-    background: #0b8f7a;
-    color: white;
-    font-size: 9px;
+    position: absolute;
+    top: -9px;
+    right: -5px;
+    background: #f59e0b;
+    color: #fff;
+    font-size: 8px;
     font-weight: 800;
-    padding: 4px 7px;
-    border-radius: 12px;
-    letter-spacing: 0.5px;
+    padding: 3px 6px;
+    border-radius: 10px;
+    letter-spacing: 0.4px;
 }
 
-/* Subtle shine */
+/* Small shine */
 
 .navbar .update-link::after {
     content: "";
     position: absolute;
     top: 0;
-    left: -120%;
-    width: 45%;
+    left: -100%;
+    width: 35%;
     height: 100%;
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255,255,255,0.35),
+        rgba(255,255,255,0.25),
         transparent
     );
     transform: skewX(-20deg);
-    animation: updateShine 3s ease-in-out infinite;
+    animation: updateShine 4s ease-in-out infinite;
 }
 
 @keyframes updateShine {
-
     0% {
-        left: -120%;
+        left: -100%;
     }
 
-    45%, 100% {
+    40%, 100% {
         left: 150%;
     }
-
 }
