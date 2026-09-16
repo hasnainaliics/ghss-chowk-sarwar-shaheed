@@ -679,39 +679,85 @@ a {
     text-align: center !important;
     width: 100%;
     }
- /* ===== Navbar ===== */
+ /* ===== NEW PREMIUM NAVBAR ===== */
 
 .navbar {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 22px;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 8px 0;
+    scrollbar-width: none;
+}
+
+.navbar::-webkit-scrollbar {
+    display: none;
 }
 
 .navbar a {
+    flex-shrink: 0;
     text-decoration: none;
-    font-weight: 600;
-    color: #1f2937;
-    white-space: nowrap;
+    color: #172033;
+    font-weight: 700;
+    font-size: 16px;
+    position: relative;
 }
 
-/* ===== Updates Highlight ===== */
+/* ===== UPDATES ===== */
 
 .navbar .update-link {
     position: relative;
-    background: #0f766e;
-    color: white;
-    padding: 9px 15px;
-    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #071a17;
+    color: #ffffff;
+    padding: 9px 16px;
+    border-radius: 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.navbar .update-link span {
-    position: absolute;
-    top: -10px;
-    right: -8px;
-    background: #f59e0b;
+/* NEW badge */
+
+.new-badge {
+    background: #0b8f7a;
     color: white;
     font-size: 9px;
-    font-weight: 700;
-    padding: 3px 6px;
-    border-radius: 10px;
+    font-weight: 800;
+    padding: 4px 7px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* Subtle shine */
+
+.navbar .update-link::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: updateShine 3s ease-in-out infinite;
+}
+
+@keyframes updateShine {
+
+    0% {
+        left: -120%;
     }
+
+    45%, 100% {
+        left: 150%;
+    }
+
+}
