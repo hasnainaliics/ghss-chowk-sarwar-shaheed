@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>School Events & Student Guidance | GHSS Chowk Sarwar Shaheed</title>
+    <title>طلبہ کے لیے خصوصی پیغامات | گورنمنٹ ہائر سیکنڈری سکول چوک سرور شہید</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- خوبصورت اردو فونٹ -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Gulzar&display=swap" rel="stylesheet">
 
     <style>
 
@@ -18,92 +19,85 @@
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
-            background: #f5f8f6;
-            color: #111;
+            background: #f4f8f6;
+            color: #171717;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            line-height: 2.2;
         }
 
-        /* TOP BAR */
+        /* اوپر والی پٹی */
 
         .top-bar {
             background: #064f3a;
-            color: #fff;
-            padding: 9px 6%;
+            color: white;
             text-align: center;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1.6px;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 700;
         }
 
-        /* HEADER */
+        /* ہیڈر */
 
         header {
-            background: #fff;
+            background: white;
             padding: 18px 6%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #e4ebe7;
+            direction: rtl;
+            border-bottom: 1px solid #e0e8e4;
         }
 
         .school-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 13px;
         }
 
-        .school-logo {
-            width: 46px;
-            height: 46px;
+        .logo {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+
             background: #087953;
-            color: #fff;
+            color: white;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            font-size: 12px;
-            font-weight: 800;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            font-weight: bold;
 
-            box-shadow: 0 7px 20px rgba(8,121,83,0.18);
+            box-shadow: 0 6px 20px rgba(8,121,83,.20);
         }
 
         .school-name {
             color: #064f3a;
-            font-size: 14px;
-            font-weight: 800;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.8;
         }
 
-        .school-subtitle {
-            margin-top: 3px;
+        .school-location {
             color: #777;
-            font-size: 10px;
+            font-size: 12px;
+            line-height: 1.5;
         }
 
         .home-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            padding: 11px 19px;
-
-            background: #087953;
-            color: #fff;
-
             text-decoration: none;
+            background: #087953;
+            color: white;
+
+            padding: 9px 18px;
             border-radius: 10px;
 
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
 
-            box-shadow: 0 7px 20px rgba(8,121,83,0.18);
-
             transition: .25s;
-        }
-
-        .home-btn span {
-            font-size: 17px;
         }
 
         .home-btn:hover {
@@ -112,15 +106,13 @@
         }
 
 
-        /* HERO */
+        /* ہیرو */
 
         .hero {
-            margin: 35px 6% 0;
-            padding: 75px 8%;
+            margin: 30px 6% 0;
+            padding: 65px 8%;
 
             border-radius: 25px;
-
-            color: #fff;
 
             background:
                 linear-gradient(
@@ -129,60 +121,60 @@
                     #064f3a
                 );
 
+            color: white;
+
+            text-align: center;
+
             position: relative;
             overflow: hidden;
         }
 
         .hero::before {
-            content: "";
+            content: "✦";
+
             position: absolute;
+            left: 8%;
+            top: 15px;
 
-            width: 360px;
-            height: 360px;
+            color: rgba(255,255,255,.10);
 
-            border-radius: 50%;
-
-            right: -120px;
-            top: -150px;
-
-            background: rgba(247,217,107,0.12);
+            font-size: 130px;
         }
 
         .hero::after {
-            content: "EVENTS";
+            content: "تعلیم";
 
             position: absolute;
+            right: 5%;
+            bottom: -35px;
 
-            right: 7%;
-            bottom: 25px;
+            color: rgba(255,255,255,.06);
 
-            font-family: 'Playfair Display', serif;
-
-            font-size: 65px;
-            font-weight: 800;
-
-            color: rgba(255,255,255,0.06);
+            font-size: 90px;
+            font-weight: bold;
         }
 
-        .hero small {
-            color: #f7d96b;
+        .hero-label {
+            display: inline-block;
 
-            font-size: 12px;
-            font-weight: 800;
+            color: #064f3a;
+            background: #f7d96b;
 
-            letter-spacing: 2px;
+            padding: 3px 18px;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            margin-bottom: 20px;
         }
 
         .hero h1 {
-            margin-top: 15px;
+            font-size: clamp(34px, 6vw, 64px);
+            line-height: 1.7;
 
-            max-width: 800px;
-
-            font-family: 'Playfair Display', serif;
-
-            font-size: clamp(40px, 6vw, 70px);
-
-            line-height: 1.05;
+            font-weight: 700;
         }
 
         .hero h1 span {
@@ -190,97 +182,93 @@
         }
 
         .hero p {
-            max-width: 650px;
+            max-width: 750px;
+            margin: 12px auto 0;
 
-            margin-top: 20px;
+            color: rgba(255,255,255,.9);
 
-            color: rgba(255,255,255,.86);
-
-            font-size: 15px;
-            line-height: 1.8;
+            font-size: 17px;
+            line-height: 2.4;
         }
 
 
-        /* MAIN */
+        /* مرکزی حصہ */
 
         .container {
-            max-width: 1100px;
+            max-width: 1050px;
+            margin: -30px auto 70px;
 
-            margin: -35px auto 70px;
-
-            padding: 0 20px;
+            padding: 0 18px;
 
             position: relative;
             z-index: 2;
         }
 
 
-        /* FEATURE CARD */
+        /* مرکزی پیغام */
 
-        .featured-event {
-            background: #fff;
+        .main-message {
+            background: white;
 
             padding: 42px;
 
             border-radius: 22px;
 
-            box-shadow: 0 20px 60px rgba(0,0,0,.08);
+            box-shadow: 0 20px 55px rgba(0,0,0,.08);
 
-            border: 1px solid #e2ebe6;
+            border: 1px solid #e1eae5;
+
+            text-align: center;
         }
 
-        .event-label {
+        .notice-badge {
             display: inline-block;
 
-            padding: 6px 12px;
-
             background: #f7d96b;
+            color: #111;
+
+            padding: 3px 17px;
 
             border-radius: 6px;
 
-            font-size: 9px;
-            font-weight: 800;
-
-            letter-spacing: 1px;
+            font-size: 14px;
+            font-weight: 700;
         }
 
-        .featured-event h2 {
-            margin-top: 18px;
+        .main-message h2 {
+            color: #064f3a;
 
-            font-family: 'Playfair Display', serif;
+            margin-top: 17px;
 
-            font-size: clamp(30px,4vw,48px);
-
-            line-height: 1.15;
+            font-size: 35px;
+            line-height: 2;
         }
 
-        .featured-event > p {
-            margin-top: 12px;
+        .main-message p {
+            color: #555;
 
-            color: #666;
+            margin-top: 10px;
 
-            line-height: 1.8;
+            font-size: 16px;
+            line-height: 2.4;
         }
 
 
-        /* IMAGE AREA */
+        /* تصویر */
 
-        .event-image {
+        .photo-box {
             margin-top: 30px;
 
-            width: 100%;
-            height: 330px;
+            height: 310px;
 
-            border-radius: 17px;
+            border-radius: 18px;
 
             overflow: hidden;
 
             position: relative;
-
-            background: #dfe9e4;
         }
 
-        .event-image img {
+        .photo-box img {
             width: 100%;
             height: 100%;
 
@@ -289,126 +277,77 @@
             display: block;
         }
 
-        .image-caption {
+        .photo-text {
             position: absolute;
 
-            left: 20px;
             bottom: 18px;
+            right: 18px;
 
-            padding: 9px 14px;
+            background: rgba(6,79,58,.92);
 
-            background: rgba(6,79,58,.90);
+            color: white;
 
-            color: #fff;
+            padding: 6px 17px;
 
             border-radius: 8px;
 
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 700;
         }
 
 
-        /* EVENT INFORMATION */
+        /* سیکشن ٹائٹل */
 
-        .event-info {
-            margin-top: 25px;
+        .section-heading {
+            text-align: center;
 
-            display: grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap: 15px;
+            margin-top: 65px;
+            margin-bottom: 28px;
         }
 
-        .event-info-box {
-            padding: 20px;
-
-            background: #f7faf8;
-
-            border: 1px solid #e3ebe7;
-
-            border-radius: 13px;
-        }
-
-        .event-info-box small {
+        .section-heading small {
             color: #087953;
 
-            font-size: 9px;
-            font-weight: 800;
-
-            letter-spacing: 1px;
+            font-size: 13px;
+            font-weight: 700;
         }
 
-        .event-info-box strong {
-            display: block;
+        .section-heading h2 {
+            color: #111;
 
-            margin-top: 7px;
+            margin-top: 5px;
+
+            font-size: 35px;
+            line-height: 2;
+        }
+
+        .section-heading p {
+            color: #777;
 
             font-size: 14px;
         }
 
 
-        /* SECTION TITLE */
+        /* کلاس کارڈز */
 
-        .section-title {
-            margin-top: 70px;
-
-            text-align: center;
-        }
-
-        .section-title small {
-            color: #087953;
-
-            font-size: 10px;
-            font-weight: 800;
-
-            letter-spacing: 2px;
-        }
-
-        .section-title h2 {
-            margin-top: 8px;
-
-            font-family: 'Playfair Display', serif;
-
-            font-size: 40px;
-        }
-
-        .section-title p {
-            max-width: 650px;
-
-            margin: 10px auto 0;
-
-            color: #666;
-
-            font-size: 13px;
-            line-height: 1.7;
-        }
-
-
-        /* TIPS */
-
-        .tips-grid {
-            margin-top: 30px;
-
+        .class-grid {
             display: grid;
 
-            grid-template-columns:
-                repeat(2,1fr);
+            grid-template-columns: repeat(2, 1fr);
 
             gap: 20px;
         }
 
-        .tip-card {
-            background: #fff;
+        .class-card {
+            background: white;
 
             padding: 30px;
 
-            border-radius: 18px;
+            border-radius: 19px;
 
-            border: 1px solid #e2ebe6;
+            border: 1px solid #e0e9e4;
 
-            box-shadow: 0 12px 35px rgba(0,0,0,.045);
+            box-shadow: 0 10px 35px rgba(0,0,0,.05);
 
             position: relative;
 
@@ -417,28 +356,24 @@
             transition: .25s;
         }
 
-        .tip-card:hover {
+        .class-card:hover {
             transform: translateY(-5px);
 
-            box-shadow: 0 18px 40px rgba(0,0,0,.08);
+            box-shadow: 0 18px 40px rgba(0,0,0,.09);
         }
 
-        .tip-card::after {
+        .class-card::before {
             content: "";
 
             position: absolute;
 
-            width: 110px;
-            height: 110px;
+            top: 0;
+            right: 0;
 
-            border-radius: 50%;
+            width: 100%;
+            height: 5px;
 
-            background: #f7d96b;
-
-            opacity: .12;
-
-            right: -35px;
-            top: -35px;
+            background: #087953;
         }
 
         .class-number {
@@ -447,275 +382,190 @@
             align-items: center;
             justify-content: center;
 
-            width: 42px;
-            height: 42px;
-
-            border-radius: 12px;
-
             background: #087953;
+            color: white;
 
-            color: #fff;
+            width: 50px;
+            height: 50px;
 
-            font-size: 12px;
-            font-weight: 800;
+            border-radius: 13px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+            font-weight: bold;
         }
 
-        .tip-card h3 {
-            margin-top: 18px;
+        .class-card h3 {
+            color: #064f3a;
 
-            font-family: 'Playfair Display', serif;
+            margin-top: 15px;
 
-            font-size: 27px;
-        }
-
-        .tip-card .tagline {
-            margin-top: 5px;
-
-            color: #087953;
-
-            font-size: 11px;
-            font-weight: 800;
-
-            letter-spacing: .8px;
-        }
-
-        .tip-card p {
-            margin-top: 14px;
-
-            color: #555;
-
-            font-size: 13px;
-
-            line-height: 1.85;
-        }
-
-        .tip-list {
-            margin-top: 17px;
-
-            padding-left: 18px;
-
-            color: #333;
-
-            font-size: 12px;
+            font-size: 28px;
 
             line-height: 2;
         }
 
-        .tip-list li::marker {
-            color: #087953;
-        }
-
-
-        /* WINTER NOTICE */
-
-        .winter {
-            margin-top: 50px;
-
-            padding: 38px;
-
-            border-radius: 20px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #064f3a,
-                    #087953
-                );
-
-            color: #fff;
-
-            position: relative;
-
-            overflow: hidden;
-        }
-
-        .winter::after {
-            content: "❄";
-
-            position: absolute;
-
-            right: 6%;
-            top: 10px;
-
-            font-size: 120px;
-
-            color: rgba(255,255,255,.07);
-        }
-
-        .winter small {
-            color: #f7d96b;
-
-            font-size: 10px;
-
-            font-weight: 800;
-
-            letter-spacing: 2px;
-        }
-
-        .winter h2 {
-            margin-top: 12px;
-
-            font-family: 'Playfair Display', serif;
-
-            font-size: 34px;
-        }
-
-        .winter p {
-            max-width: 750px;
-
-            margin-top: 10px;
-
-            color: rgba(255,255,255,.87);
+        .class-card .subtitle {
+            color: #b18a00;
 
             font-size: 13px;
+
+            font-weight: 700;
 
             line-height: 1.8;
         }
 
+        .class-card p {
+            color: #555;
 
-        /* URDU GUIDANCE */
+            margin-top: 10px;
 
-        .urdu-section {
-            margin-top: 45px;
+            font-size: 14px;
 
-            padding: 35px 30px;
+            line-height: 2.4;
+        }
+
+        .tips {
+            margin-top: 13px;
+
+            background: #f5faf7;
+
+            border-radius: 12px;
+
+            padding: 14px 22px;
+
+            border-right: 4px solid #087953;
+        }
+
+        .tips strong {
+            color: #064f3a;
+        }
+
+        .tips ul {
+            margin-right: 20px;
+
+            color: #444;
+
+            font-size: 13px;
+
+            line-height: 2.5;
+        }
+
+        .tips li::marker {
+            color: #087953;
+        }
+
+
+        /* گولڈن موٹیویشن */
+
+        .motivation {
+            margin-top: 50px;
+
+            padding: 42px 35px;
+
+            border-radius: 21px;
 
             background: #fffbea;
 
             border: 1px solid #efdf91;
 
-            border-radius: 18px;
+            text-align: center;
 
-            text-align: right;
-
-            direction: rtl;
+            position: relative;
         }
 
-        .urdu-section .urdu-label {
-            display: inline-block;
+        .motivation::before {
+            content: "★";
 
-            padding: 5px 12px;
+            position: absolute;
 
-            background: #f7d96b;
+            left: 25px;
+            top: 10px;
 
-            color: #111;
+            color: #f0d45d;
 
-            border-radius: 6px;
+            font-size: 70px;
 
-            font-family: 'Noto Nastaliq Urdu', serif;
-
-            font-size: 13px;
-            font-weight: 700;
+            opacity: .3;
         }
 
-        .urdu-section h2 {
-            margin-top: 18px;
-
+        .motivation h2 {
             color: #064f3a;
 
-            font-family: 'Noto Nastaliq Urdu', serif;
-
-            font-size: 27px;
+            font-size: 34px;
 
             line-height: 2;
         }
 
-        .urdu-section p {
-            margin-top: 8px;
+        .motivation p {
+            max-width: 760px;
 
-            color: #222;
+            margin: 10px auto;
 
-            font-family: 'Noto Nastaliq Urdu', serif;
+            color: #444;
 
-            font-size: 18px;
+            font-size: 16px;
 
-            font-weight: 600;
-
-            line-height: 2.4;
+            line-height: 2.6;
         }
 
 
-        /* LIFE MESSAGE */
+        /* عادات */
 
-        .life-message {
-            margin-top: 50px;
-
-            text-align: center;
-        }
-
-        .life-message h2 {
-            font-family: 'Playfair Display', serif;
-
-            font-size: 36px;
-        }
-
-        .life-message p {
-            max-width: 700px;
-
-            margin: 12px auto;
-
-            color: #666;
-
-            line-height: 1.8;
-
-            font-size: 13px;
-        }
-
-
-        /* BOTTOM CARDS */
-
-        .values {
-            margin-top: 30px;
-
+        .habits {
             display: grid;
 
-            grid-template-columns:
-                repeat(4,1fr);
+            grid-template-columns: repeat(4,1fr);
 
             gap: 13px;
+
+            margin-top: 30px;
         }
 
-        .value-card {
-            padding: 22px 15px;
+        .habit {
+            background: white;
+
+            padding: 22px 13px;
 
             text-align: center;
 
-            background: #fff;
+            border-radius: 14px;
 
-            border: 1px solid #e3ebe7;
-
-            border-radius: 13px;
+            border: 1px solid #e1e9e5;
         }
 
-        .value-icon {
-            font-size: 26px;
+        .habit-icon {
+            font-size: 28px;
+
+            line-height: 1.5;
         }
 
-        .value-card h4 {
-            margin-top: 10px;
+        .habit h4 {
+            color: #064f3a;
 
-            font-size: 13px;
+            margin-top: 7px;
+
+            font-size: 15px;
         }
 
-        .value-card p {
-            margin-top: 6px;
-
+        .habit p {
             color: #777;
 
-            font-size: 10px;
+            font-size: 11px;
 
-            line-height: 1.6;
+            line-height: 2;
         }
 
 
-        /* SECOND IMAGE */
+        /* دوسری تصویر */
 
         .second-photo {
-            margin-top: 45px;
+            margin-top: 50px;
 
-            height: 270px;
+            height: 280px;
 
-            border-radius: 18px;
+            border-radius: 20px;
 
             overflow: hidden;
 
@@ -729,154 +579,196 @@
             object-fit: cover;
         }
 
-        .second-photo span {
+        .second-photo .caption {
             position: absolute;
 
-            left: 20px;
-            bottom: 18px;
+            bottom: 20px;
+            right: 20px;
 
-            padding: 9px 14px;
+            background: rgba(6,79,58,.92);
+
+            color: white;
+
+            padding: 7px 18px;
 
             border-radius: 8px;
 
-            background: rgba(6,79,58,.9);
-
-            color: #fff;
-
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 13px;
         }
 
 
-        /* BACK BUTTON */
+        /* آخری پیغام */
 
-        .back-area {
+        .final-message {
+            margin-top: 50px;
+
+            padding: 35px 28px;
+
+            background: #064f3a;
+
+            color: white;
+
+            border-radius: 20px;
+
+            text-align: center;
+        }
+
+        .final-message h2 {
+            color: #f7d96b;
+
+            font-size: 31px;
+
+            line-height: 2;
+        }
+
+        .final-message p {
+            max-width: 750px;
+
+            margin: 10px auto 0;
+
+            color: rgba(255,255,255,.9);
+
+            font-size: 15px;
+
+            line-height: 2.5;
+        }
+
+
+        /* واپس بٹن */
+
+        .back {
             text-align: center;
 
-            margin-top: 45px;
+            margin-top: 40px;
         }
 
-        .back-btn {
+        .back a {
             display: inline-block;
-
-            padding: 13px 25px;
-
-            background: #087953;
-
-            color: #fff;
 
             text-decoration: none;
 
+            background: #087953;
+
+            color: white;
+
+            padding: 9px 25px;
+
             border-radius: 10px;
 
-            font-size: 12px;
-            font-weight: 700;
+            font-size: 14px;
 
             transition: .25s;
         }
 
-        .back-btn:hover {
+        .back a:hover {
             background: #064f3a;
 
             transform: translateY(-2px);
         }
 
 
-        /* FOOTER */
+        /* فوٹر */
 
         footer {
             text-align: center;
 
-            padding: 30px 20px;
+            padding: 30px 15px;
 
             color: #777;
 
-            font-size: 11px;
+            background: white;
+
+            font-size: 12px;
         }
 
 
-        /* MOBILE */
+        /* موبائل */
 
         @media(max-width:700px) {
 
             header {
-                padding: 15px 5%;
+                padding: 14px 5%;
             }
 
             .school-name {
                 font-size: 12px;
             }
 
-            .school-subtitle {
-                font-size: 8px;
+            .school-location {
+                font-size: 9px;
             }
 
-            .school-logo {
-                width: 40px;
-                height: 40px;
+            .logo {
+                width: 42px;
+                height: 42px;
             }
 
             .home-btn {
-                padding: 10px 14px;
+                padding: 7px 13px;
+                font-size: 11px;
             }
 
             .hero {
                 margin: 20px 4% 0;
-
-                padding: 50px 25px;
-
+                padding: 50px 20px;
                 border-radius: 18px;
             }
 
             .hero h1 {
-                font-size: 42px;
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 14px;
             }
 
             .container {
                 margin-top: -20px;
-
                 padding: 0 12px;
             }
 
-            .featured-event {
-                padding: 27px 20px;
+            .main-message {
+                padding: 28px 19px;
             }
 
-            .event-image {
-                height: 230px;
+            .main-message h2 {
+                font-size: 27px;
             }
 
-            .event-info {
+            .photo-box {
+                height: 220px;
+            }
+
+            .class-grid {
                 grid-template-columns: 1fr;
             }
 
-            .tips-grid {
-                grid-template-columns: 1fr;
+            .class-card {
+                padding: 25px 20px;
             }
 
-            .values {
-                grid-template-columns:
-                    repeat(2,1fr);
-            }
-
-            .section-title h2 {
-                font-size: 32px;
-            }
-
-            .winter {
-                padding: 28px 22px;
-            }
-
-            .winter h2 {
+            .section-heading h2 {
                 font-size: 29px;
             }
 
-            .urdu-section {
+            .habits {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .motivation {
                 padding: 30px 20px;
             }
 
-            .urdu-section p {
-                font-size: 16px;
+            .motivation h2 {
+                font-size: 27px;
+            }
+
+            .motivation p {
+                font-size: 14px;
+            }
+
+            .second-photo {
+                height: 220px;
             }
 
         }
@@ -884,7 +776,7 @@
 
         @media(max-width:430px) {
 
-            .school-subtitle {
+            .school-location {
                 display: none;
             }
 
@@ -892,21 +784,20 @@
                 font-size: 10px;
             }
 
-            .home-btn {
-                font-size: 10px;
-                padding: 9px 11px;
-            }
-
             .hero h1 {
-                font-size: 37px;
+                font-size: 33px;
             }
 
-            .event-image {
-                height: 200px;
+            .hero p {
+                font-size: 13px;
             }
 
-            .values {
+            .habits {
                 grid-template-columns: 1fr;
+            }
+
+            .urdu {
+                font-size: 15px;
             }
 
         }
@@ -919,31 +810,31 @@
 <body>
 
 
-    <!-- TOP BAR -->
+    <!-- اوپر والی پٹی -->
 
     <div class="top-bar">
-        OFFICIAL SCHOOL EVENTS & STUDENT GUIDANCE
+        طلبہ کے لیے اسکول کی جانب سے خصوصی پیغام
     </div>
 
 
-    <!-- HEADER -->
+    <!-- ہیڈر -->
 
     <header>
 
         <div class="school-brand">
 
-            <div class="school-logo">
+            <div class="logo">
                 GHSS
             </div>
 
             <div>
 
                 <div class="school-name">
-                    Government Higher Secondary School
+                    گورنمنٹ ہائر سیکنڈری سکول
                 </div>
 
-                <div class="school-subtitle">
-                    Chowk Sarwar Shaheed
+                <div class="school-location">
+                    چوک سرور شہید
                 </div>
 
             </div>
@@ -952,35 +843,31 @@
 
 
         <a href="index.html" class="home-btn">
-
-            <span>⌂</span>
-
-            Home
-
+            ⌂ ہوم
         </a>
 
     </header>
 
 
 
-    <!-- HERO -->
+    <!-- ہیرو -->
 
     <section class="hero">
 
-        <small>
-            SCHOOL EVENTS
-        </small>
+        <div class="hero-label">
+            طلبہ کے لیے خصوصی رہنمائی
+        </div>
 
         <h1>
-            Learn.
-            <span>Grow.</span>
-            Become.
+            اپنے خوابوں کو
+            <span>محنت</span>
+            سے حقیقت بنائیں
         </h1>
 
         <p>
-            School is not only about books and examinations.
-            It is also about developing confidence, discipline,
-            kindness, responsibility and a positive attitude towards life.
+            پیارے طلبہ! نیا تعلیمی سال اپنے اندر بہت سے نئے مواقع لے کر آتا ہے۔
+            آج سے اپنی عادات بہتر بنائیں، اپنے وقت کی قدر کریں، باقاعدگی سے پڑھیں
+            اور اپنی زندگی کو ایک خوبصورت مقصد کی طرف لے کر جائیں۔
         </p>
 
     </section>
@@ -990,81 +877,37 @@
     <main class="container">
 
 
-        <!-- FEATURED EVENT -->
+        <!-- مرکزی پیغام -->
 
-        <section class="featured-event">
+        <section class="main-message">
 
-            <span class="event-label">
-                STUDENT DEVELOPMENT
+            <span class="notice-badge">
+                اسکول کی جانب سے خصوصی پیغام
             </span>
 
             <h2>
-                New Academic Session
+                ہر دن خود کو کل سے بہتر بنائیں
             </h2>
 
             <p>
-                A new class is a new opportunity. Every student should
-                use this academic year to improve knowledge, habits,
-                character and confidence.
+                کامیابی صرف زیادہ نمبر حاصل کرنے کا نام نہیں۔
+                کامیابی اس بات کا نام بھی ہے کہ انسان اپنے وقت کی قدر کرے،
+                اپنے والدین اور اساتذہ کا احترام کرے، دوسروں کے کام آئے،
+                اپنی غلطیوں سے سیکھے اور مسلسل آگے بڑھنے کی کوشش کرے۔
             </p>
 
 
-            <!-- PHOTO 1 -->
+            <!-- پہلی تصویر -->
 
-            <div class="event-image">
+            <div class="photo-box">
 
                 <img
                     src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=85"
-                    alt="Students studying in a classroom"
+                    alt="طلبہ تعلیم حاصل کرتے ہوئے"
                 >
 
-                <div class="image-caption">
-                    Learning Today • Building Tomorrow
-                </div>
-
-            </div>
-
-
-            <!-- EVENT INFO -->
-
-            <div class="event-info">
-
-                <div class="event-info-box">
-
-                    <small>
-                        FOCUS
-                    </small>
-
-                    <strong>
-                        Academic Growth
-                    </strong>
-
-                </div>
-
-
-                <div class="event-info-box">
-
-                    <small>
-                        MESSAGE
-                    </small>
-
-                    <strong>
-                        Stay Consistent
-                    </strong>
-
-                </div>
-
-
-                <div class="event-info-box">
-
-                    <small>
-                        GOAL
-                    </small>
-
-                    <strong>
-                        Become Your Best
-                    </strong>
-
+                <div class="photo-text">
+                    علم حاصل کریں، آگے بڑھیں
                 </div>
 
             </div>
@@ -1073,46 +916,153 @@
 
 
 
-        <!-- TIPS TITLE -->
+        <!-- کلاس وائز -->
 
-        <section class="section-title">
+        <section class="section-heading">
 
             <small>
-                CLASS-WISE GUIDANCE
+                جماعت وار رہنمائی
             </small>
 
             <h2>
-                A Message For Every Student
+                ہر جماعت کے لیے ایک خاص پیغام
             </h2>
 
             <p>
-                Every class has a different stage of academic life.
-                Choose your priorities wisely and make every day count.
+                اپنی جماعت کے مطابق ان باتوں کو اپنی روزمرہ زندگی کا حصہ بنائیں۔
             </p>
 
         </section>
 
 
 
-        <!-- CLASS TIPS -->
-
-        <section class="tips-grid">
+        <section class="class-grid">
 
 
-            <!-- CLASS 9 -->
+            <!-- نویں -->
 
-            <article class="tip-card">
+            <article class="class-card">
 
                 <div class="class-number">
                     09
                 </div>
 
                 <h3>
-                    Class 9th
+                    جماعت نہم
                 </h3>
 
-                <div class="tagline">
-                    BUILD YOUR FOUNDATION
+                <div class="subtitle">
+                    مضبوط بنیاد بنائیں
                 </div>
 
-                
+                <p>
+                    نویں جماعت آپ کے تعلیمی سفر کا ایک نیا مرحلہ ہے۔
+                    شروع ہی سے اچھی عادات بنائیں تاکہ آنے والے سال
+                    آپ کے لیے آسان اور کامیاب ہوں۔
+                </p>
+
+                <div class="tips">
+
+                    <strong>
+                        آپ کے لیے چند اہم باتیں:
+                    </strong>
+
+                    <ul>
+
+                        <li>
+                            روزانہ پڑھنے کے لیے ایک سادہ سا ٹائم ٹیبل بنائیں۔
+                        </li>
+
+                        <li>
+                            ہر مضمون کو تھوڑا تھوڑا وقت ضرور دیں۔
+                        </li>
+
+                        <li>
+                            جو بات سمجھ نہ آئے، استاد سے ضرور پوچھیں۔
+                        </li>
+
+                        <li>
+                            موبائل اور غیر ضروری مصروفیات میں وقت ضائع نہ کریں۔
+                        </li>
+
+                        <li>
+                            ابھی سے اچھی پڑھائی کی عادت بنائیں۔
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- دسویں -->
+
+            <article class="class-card">
+
+                <div class="class-number">
+                    10
+                </div>
+
+                <h3>
+                    جماعت دہم
+                </h3>
+
+                <div class="subtitle">
+                    توجہ، محنت اور مستقل مزاجی
+                </div>
+
+                <p>
+                    دسویں جماعت میں اپنی پڑھائی کو سنجیدگی سے لیں۔
+                    صرف امتحان کے دنوں میں پڑھنے کے بجائے پورے سال
+                    باقاعدگی سے تیاری کرتے رہیں۔
+                </p>
+
+                <div class="tips">
+
+                    <strong>
+                        اپنے نمبروں میں بہتری کے لیے:
+                    </strong>
+
+                    <ul>
+
+                        <li>
+                            روزانہ کا ٹائم ٹیبل بنا کر اس پر عمل کریں۔
+                        </li>
+
+                        <li>
+                            سبق پڑھنے کے بعد اسی دن مختصر دہرائی کریں۔
+                        </li>
+
+                        <li>
+                            سوالات اور مشقیں خود حل کرنے کی کوشش کریں۔
+                        </li>
+
+                        <li>
+                            کمزور مضمون کو زیادہ وقت دیں۔
+                        </li>
+
+                        <li>
+                            آخری وقت کی تیاری کے بجائے روزانہ محنت کریں۔
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- گیارہویں -->
+
+            <article class="class-card">
+
+                <div class="class-number">
+                    11
+                </div>
+
+                <h3>
+                    جماعت اوّل سال
+                </h3
