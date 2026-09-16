@@ -675,4 +675,6 @@ a {
 .news-card:hover h3 {
     color: #0b7a59;
         }
-
+.developer {
+    text-align: center;
+}
