@@ -447,7 +447,7 @@ a {
 
 
 /* =========================================
-   GALLERY
+   GALLERY - PROFESSIONAL VERSION
 ========================================= */
 
 .gallery {
@@ -456,34 +456,142 @@ a {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
 }
 
+
+/* GALLERY CARD */
+
 .gallery-item {
-    height: 220px;
-    border-radius: 12px;
+    position: relative;
+
+    height: 230px;
+
+    border-radius: 16px;
+    overflow: hidden;
 
     background:
-        linear-gradient(rgba(5,60,44,0.45), rgba(5,60,44,0.45)),
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0.05) 15%,
+            rgba(0,35,25,0.88) 100%
+        ),
         url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80');
 
     background-size: cover;
     background-position: center;
 
     display: flex;
+    align-items: flex-end;
+
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.10);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* GALLERY CONTENT */
+
+.gallery-content {
+    width: 100%;
+    padding: 25px;
+
+    text-align: left;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ICON */
+
+.gallery-icon {
+    display: block;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
+    margin-bottom: 12px;
 
-    transition: 0.3s;
+    border-radius: 13px;
+
+    background: rgba(255,255,255,0.16);
+
+    border: 1px solid rgba(255,255,255,0.28);
+
+    backdrop-filter: blur(7px);
+
+    font-size: 24px;
 }
 
+
+/* TITLE */
+
+.gallery-content h3 {
+    margin: 0 0 11px;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    color: #ffffff;
+}
+
+
+/* HIGHLIGHT BUTTON */
+
+.gallery-button {
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    background: rgba(255,255,255,0.17);
+
+    border: 1px solid rgba(255,255,255,0.48);
+
+    border-radius: 20px;
+
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    backdrop-filter: blur(6px);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* HOVER */
+
 .gallery-item:hover {
-    transform: scale(1.02);
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.18);
+}
+
+.gallery-item:hover .gallery-button {
+    background: #ffffff;
+    color: #075c45;
+
+    transform: translateX(3px);
 }
 
 
@@ -644,6 +752,7 @@ a {
     text-align: center;
     max-width: 850px;
     margin: 0 auto 45px;
+
     animation: featureHeading 0.9s ease both;
 }
 
@@ -1148,676 +1257,4 @@ a {
 
         transform: skewX(-20deg);
 
-        animation:
-            updateShine 4s ease-in-out infinite;
-    }
-
-    @keyframes updateShine {
-
-        0% {
-            left: -100%;
-        }
-
-        40%, 100% {
-            left: 150%;
-        }
-
-    }
-
-
-    /* HERO */
-
-    .hero {
-        min-height: 0;
-        height: 560px;
-        padding: 35px;
-    }
-
-    .hero-content {
-        width: 100%;
-    }
-
-    .hero h2 {
-        font-size: 32px;
-        line-height: 1.12;
-    }
-
-    .hero p {
-        font-size: 14px;
-        line-height: 1.5;
-        margin: 20px 0;
-    }
-
-    .hero-buttons {
-        gap: 10px;
-    }
-
-    .btn {
-        padding: 11px 17px;
-    }
-
-
-    /* QUICK INFO */
-
-    .quick-info {
-        grid-template-columns: 1fr;
-    }
-
-    .info-card {
-        border-right: none;
-        border-bottom: 1px solid #edf0f4;
-    }
-
-    .info-card:last-child {
-        border-bottom: none;
-    }
-
-
-    /* ALL SECTIONS */
-
-    .section {
-        padding: 45px 0;
-    }
-
-
-    /* ABOUT - GAP FIX */
-
-    .about {
-        padding-top: 25px;
-        padding-bottom: 30px;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .about-image,
-    .placeholder-image {
-        min-height: 200px;
-        height: 200px;
-    }
-
-    .placeholder-image {
-        padding: 20px;
-    }
-
-    .about-text h3 {
-        font-size: 22px;
-        line-height: 1.35;
-        margin: 0;
-    }
-
-
-    /* SECTION HEADINGS */
-
-    .section-heading {
-        margin-bottom: 25px;
-    }
-
-    .section-heading h2 {
-  
-/* =========================================
-   MOBILE FINAL FIX
-   - No whole-page horizontal movement
-   - Reduce excessive section gaps
-   - Better mobile spacing
-========================================= */
-
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    min-width: 0;
-}
-
-/* Prevent flex/grid children from creating overflow */
-.header,
-.logo-area,
-.hero,
-.hero-content,
-.section,
-.quick-info,
-.about-content,
-.news-grid,
-.gallery-grid,
-.contact-grid,
-.leader-card {
-    max-width: 100%;
-    min-width: 0;
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 550px) {
-
-    /* ---------- HEADER ---------- */
-
-    .header {
-        width: 100%;
-        padding: 10px 5% 4px;
-        gap: 3px;
-        overflow: hidden;
-    }
-
-    .logo-area {
-        width: 100%;
-        min-width: 0;
-        gap: 10px;
-    }
-
-    .logo-area > div:last-child {
-        min-width: 0;
-        overflow: hidden;
-    }
-
-    .logo-area h1 {
-        font-size: 13px;
-        line-height: 1.25;
-        white-space: normal;
-    }
-
-    .logo-area p {
-        font-size: 10px;
-    }
-
-    .school-logo {
-        width: 48px;
-        height: 48px;
-        flex-shrink: 0;
-    }
-
-
-    /* ---------- NAVBAR ---------- */
-
-    .navbar {
-        width: 100%;
-        max-width: 100%;
-        height: 46px;
-
-        display: flex;
-        align-items: center;
-
-        gap: 13px;
-        padding: 0;
-
-        overflow-x: auto;
-        overflow-y: hidden;
-
-        white-space: nowrap;
-        scrollbar-width: none;
-
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .navbar::-webkit-scrollbar {
-        display: none;
-    }
-
-    .navbar a {
-        flex: 0 0 auto;
-        white-space: nowrap;
-        font-size: 14px;
-    }
-
-
-    /* ---------- HERO ---------- */
-
-    .hero {
-        width: 100%;
-        max-width: 100%;
-        height: 500px;
-        min-height: 0;
-
-        padding: 28px 5%;
-
-        overflow: hidden;
-    }
-
-    .hero-content {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .welcome {
-        font-size: 9px;
-        padding: 6px 12px;
-        margin-bottom: 15px;
-    }
-
-    .hero h2 {
-        font-size: 30px;
-        line-height: 1.1;
-        max-width: 100%;
-    }
-
-    .hero p {
-        max-width: 100%;
-        font-size: 13px;
-        line-height: 1.5;
-        margin: 16px 0;
-    }
-
-
-    /* ---------- QUICK INFO ---------- */
-
-    .quick-info {
-        width: 90%;
-        max-width: 90%;
-
-        margin: -35px auto 0;
-
-        display: grid;
-        grid-template-columns: 1fr;
-
-        border-radius: 16px;
-
-        overflow: hidden;
-    }
-
-    .info-card {
-        width: 100%;
-        min-width: 0;
-
-        padding: 22px 20px;
-
-        border-right: none;
-        border-bottom: 1px solid #edf0f4;
-    }
-
-    .info-card:last-child {
-        border-bottom: none;
-    }
-
-    .info-card span {
-        font-size: 25px;
-    }
-
-    .info-card h3 {
-        margin-top: 7px;
-        font-size: 15px;
-    }
-
-    .info-card p {
-        margin-top: 3px;
-        font-size: 11px;
-        line-height: 1.6;
-    }
-
-
-    /* =====================================
-       ALL SECTIONS
-    ===================================== */
-
-    .section {
-        width: 90%;
-        max-width: 90%;
-
-        padding: 32px 0;
-        margin: 0 auto;
-    }
-
-
-    /* ---------- SECTION HEADINGS ---------- */
-
-    .section-heading {
-        margin-bottom: 20px;
-    }
-
-    .section-heading span {
-        font-size: 9px;
-        letter-spacing: 1.5px;
-    }
-
-    .section-heading h2 {
-        margin-top: 5px;
-        font-size: 27px;
-        line-height: 1.2;
-    }
-
-
-    /* =====================================
-       ADMINISTRATION
-    ===================================== */
-
-    .administration {
-        width: 90%;
-        padding-top: 30px;
-        padding-bottom: 32px;
-    }
-
-    .administration .section-heading {
-        margin-bottom: 18px;
-    }
-
-    .leader-card {
-        width: 100%;
-        max-width: 500px;
-
-        padding: 24px 18px;
-
-        gap: 15px;
-    }
-
-    .leader-avatar {
-        width: 68px;
-        height: 68px;
-        flex-shrink: 0;
-
-        font-size: 20px;
-    }
-
-    .leader-card h3 {
-        font-size: 18px;
-        line-height: 1.35;
-    }
-
-    .leader-card p {
-        font-size: 12px;
-    }
-
-
-    /* =====================================
-       ABOUT
-    ===================================== */
-
-    .about {
-        padding-top: 30px;
-        padding-bottom: 32px;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .about-image,
-    .placeholder-image {
-        width: 100%;
-        min-height: 190px;
-        height: 190px;
-    }
-
-    .placeholder-image {
-        padding: 18px;
-    }
-
-    .about-text h3 {
-        font-size: 20px;
-        line-height: 1.4;
-        margin: 0;
-    }
-
-
-    /* =====================================
-       NEWS
-    ===================================== */
-
-    .updates {
-        padding-top: 32px;
-        padding-bottom: 32px;
-    }
-
-    .news-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .news-card {
-        width: 100%;
-        padding: 18px;
-        gap: 13px;
-    }
-
-    .news-date {
-        min-width: 52px;
-        width: 52px;
-        height: 52px;
-    }
-
-    .news-card h3 {
-        font-size: 15px;
-    }
-
-    .news-card p {
-        font-size: 11px;
-        line-height: 1.55;
-    }
-
-
-    /* =========================================
-   GALLERY
-========================================= */
-
-.gallery {
-    text-align: center;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-}
-
-
-/* GALLERY CARD */
-
-.gallery-item {
-    height: 230px;
-
-    position: relative;
-    overflow: hidden;
-
-    border-radius: 16px;
-
-    background:
-        linear-gradient(
-            rgba(5,60,44,0.58),
-            rgba(5,60,44,0.68)
-        ),
-        url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80');
-
-    background-size: cover;
-    background-position: center;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 7px;
-
-    color: white;
-
-    padding: 20px;
-
-    text-align: center;
-
-    border: 1px solid rgba(255,255,255,0.12);
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,0.10);
-
-    transition:
-        transform 0.35s ease,
-        box-shadow 0.35s ease;
-}
-
-
-/* EMOJI */
-
-.gallery-item span {
-    display: block;
-
-    font-size: 34px;
-
-    line-height: 1;
-
-    margin-bottom: 7px;
-
-    filter: drop-shadow(0 3px 5px rgba(0,0,0,0.25));
-
-    transition: transform 0.35s ease;
-}
-
-
-/* TITLE */
-
-.gallery-item strong {
-    display: block;
-
-    width: 100%;
-
-    font-size: 20px;
-
-    line-height: 1.25;
-
-    font-weight: 800;
-
-    color: #ffffff;
-
-    text-shadow:
-        0 2px 8px rgba(0,0,0,0.45);
-}
-
-
-/* VIEW TEXT */
-
-.gallery-item small {
-    display: block;
-
-    width: 100%;
-
-    margin-top: 3px;
-
-    font-size: 12px;
-
-    line-height: 1.4;
-
-    font-weight: 600;
-
-    color: rgba(255,255,255,0.90);
-
-    text-shadow:
-        0 2px 6px rgba(0,0,0,0.45);
-}
-
-
-/* HOVER */
-
-.gallery-item:hover {
-    transform: translateY(-6px);
-
-    box-shadow:
-        0 18px 40px rgba(0,0,0,0.16);
-}
-
-.gallery-item:hover span {
-    transform:
-        translateY(-4px)
-        scale(1.08);
-}
-
-
-/* =========================================
-   GALLERY MOBILE
-========================================= */
-
-@media (max-width: 900px) {
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-
-    .gallery-item {
-        height: 230px;
-    }
-
-}
-
-
-@media (max-width: 550px) {
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-    }
-
-    .gallery-item {
-        height: 205px;
-
-        padding: 15px;
-
-        border-radius: 15px;
-
-        gap: 6px;
-    }
-
-    .gallery-item span {
-        font-size: 29px;
-        margin-bottom: 5px;
-    }
-
-    .gallery-item strong {
-        font-size: 17px;
-        line-height: 1.25;
-    }
-
-    .gallery-item small {
-        font-size: 10px;
-        line-height: 1.35;
-    }
-
-       }
-
-    /* =====================================
-       SCHOOL FEATURES
-    ===================================== */
-
-    .school-features {
-        width: 100%;
-        padding: 40px 5%;
-        overflow: hidden;
-    }
-
-    .school-features .quick-info {
-        width: 100%;
-        max-width: 100%;
-
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .school-features .info-card {
-        min-height: 0;
-        padding: 24px 20px;
-    }
-
-
-    /* =====================================
-       FOOTER
-    ===================================== */
-
-    .footer {
-        width: 100%;
-        padding: 35px 5% 18px;
-        overflow: hidden;
-    }
-
-    .footer-content {
-        width: 100%;
-    }
-
-    .developer {
-        font-size: 12px;
-    }
-       }
+        a
