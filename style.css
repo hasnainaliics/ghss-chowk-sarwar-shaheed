@@ -1277,3 +1277,104 @@ a {
         min-height: auto !important;
     }
 }
+/* =========================================
+   MOBILE SPACING & SIZE FIX
+========================================= */
+
+@media (max-width: 600px) {
+
+    /* All sections */
+    .section {
+        width: 90%;
+        padding-top: 45px !important;
+        padding-bottom: 45px !important;
+        margin: 0 auto;
+    }
+
+    /* Administration */
+    .administration {
+        padding-top: 45px !important;
+        padding-bottom: 20px !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* About */
+    .about {
+        padding-top: 25px !important;
+        margin-top: 0 !important;
+    }
+
+    /* About heading */
+    .about .section-heading {
+        margin-bottom: 30px !important;
+    }
+
+    /* About image */
+    .about-image,
+    .placeholder-image {
+        min-height: 300px !important;
+        height: 300px !important;
+    }
+
+    /* Leader card */
+    .leader-card {
+        padding: 25px 18px !important;
+        gap: 15px !important;
+    }
+
+    .leader-avatar {
+        width: 65px !important;
+        height: 65px !important;
+        font-size: 20px !important;
+        flex-shrink: 0;
+    }
+
+    .leader-card h3 {
+        font-size: 18px !important;
+    }
+
+    .leader-card p {
+        font-size: 12px !important;
+    }
+
+    /* Section headings */
+    .section-heading {
+        margin-bottom: 30px !important;
+    }
+
+    .section-heading h2 {
+        font-size: 30px !important;
+    }
+
+    /* About text */
+    .about-content {
+        grid-template-columns: 1fr !important;
+        gap: 25px !important;
+    }
+
+    .about-text h3 {
+        font-size: 20px !important;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .gallery-item {
+        height: 190px !important;
+    }
+
+    /* News */
+    .news-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+
+    /* Contact */
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+}
