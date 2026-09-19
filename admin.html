@@ -59,15 +59,18 @@
 
   <script type="module">
 
+    /* =========================================
+       FIREBASE
+    ========================================= */
+
     import { initializeApp }
       from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
     import {
-      getStorage,
+      getDatabase,
       ref,
-      uploadBytes,
-      getDownloadURL
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
+      push
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
 
     const firebaseConfig = {
@@ -82,38 +85,133 @@
 
 
     const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
 
+    const db = getDatabase(app);
+
+
+    /* =========================================
+       CLOUDINARY
+    ========================================= */
+
+    const CLOUD_NAME = "xplblky";
+
+    const UPLOAD_PRESET = "school_photos";
+
+
+    /* =========================================
+       UPLOAD PHOTO
+    ========================================= */
 
     document.getElementById("uploadBtn").addEventListener("click", async () => {
 
-      const file = document.getElementById("photo").files[0];
+      const fileInput = document.getElementById("photo");
       const folder = document.getElementById("folder").value;
       const status = document.getElementById("status");
+
+      const file = fileInput.files[0];
+
+
+      /* No photo selected */
 
       if (!file) {
         status.innerText = "Pehle photo select karo.";
         return;
       }
 
+
+      /* Check image */
+
+      if (!file.type.startsWith("image/")) {
+        status.innerText = "Sirf image upload karo.";
+        return;
+      }
+
+
       status.innerText = "Photo upload ho rahi hai...";
+
 
       try {
 
-        const fileName = Date.now() + "_" + file.name;
+        /* =========================================
+           CLOUDINARY UPLOAD
+        ========================================= */
 
-        const storageRef = ref(
-          storage,
-          folder + "/" + fileName
-        );
+        const cloudinaryURL =
+          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
 
-        await uploadBytes(storageRef, file);
 
-        const downloadURL = await getDownloadURL(storageRef);
+        const formData = new FormData();
 
-        console.log("Photo URL:", downloadURL);
+        formData.append("file", file);
 
-        status.innerText = "Photo successfully upload ho gayi!";
+        formData.append("upload_preset", UPLOAD_PRESET);
+
+        formData.append("folder", folder);
+
+
+        const response = await fetch(cloudinaryURL, {
+          method: "POST",
+          body: formData
+        });
+
+
+        const data = await response.json();
+
+
+        /* Cloudinary error */
+
+        if (!response.ok) {
+
+          console.error("Cloudinary Error:", data);
+
+          throw new Error(
+            data.error?.message || "Cloudinary upload failed."
+          );
+
+        }
+
+
+        /* =========================================
+           GET CLOUDINARY PHOTO URL
+        ========================================= */
+
+        const photoURL = data.secure_url;
+
+        const publicID = data.public_id;
+
+
+        console.log("Cloudinary Photo URL:", photoURL);
+
+
+        /* =========================================
+           SAVE PHOTO URL IN FIREBASE DATABASE
+        ========================================= */
+
+        await push(ref(db, folder), {
+
+          url: photoURL,
+
+          publicId: publicID,
+
+          name: file.name,
+
+          uploadedAt: Date.now()
+
+        });
+
+
+        /* =========================================
+           SUCCESS
+        ========================================= */
+
+        status.innerText =
+          "Photo successfully upload ho gayi! ✅";
+
+
+        /* Clear selected file */
+
+        fileInput.value = "";
+
 
       } catch (error) {
 
@@ -129,4 +227,4 @@
   </script>
 
 </body>
-    </html>
+</html>
