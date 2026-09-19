@@ -1258,3 +1258,22 @@ a {
         transform: skewX(-20deg);
 
         a
+/* MOBILE SPACE FIX */
+
+@media (max-width: 600px) {
+
+    .admin {
+        padding-bottom: 25px !important;
+        margin-bottom: 0 !important;
+        min-height: auto !important;
+    }
+
+    .about {
+        padding-top: 35px !important;
+        margin-top: 0 !important;
+    }
+
+    .section {
+        min-height: auto !important;
+    }
+}
