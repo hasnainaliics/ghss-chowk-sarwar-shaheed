@@ -1593,73 +1593,76 @@ a {
        }
 
 /* =========================================
-   NEWS & UPDATES - URDU HIGHLIGHT
+   NEWS & UPDATES — FINAL URDU DESIGN
 ========================================= */
 
-/* Urdu font for updates section */
-.updates-heading h2,
-.news-content h3,
-.news-content p {
-    font-family: 'Noto Nastaliq Urdu', serif;
-}
-
-
-/* MAIN UPDATES HEADING */
+/* MAIN NEWS SECTION */
 
 .updates-heading {
     margin-bottom: 45px;
+    text-align: right;
 }
+
+
+/* English label stays English */
 
 .updates-heading span {
     display: block;
-    color: #0b8b64;
+
     font-family: 'Inter', sans-serif;
+
+    color: #0b8b64;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 3px;
-    margin-bottom: 10px;
+
+    text-align: right;
+
+    margin-bottom: 14px;
 }
 
 
-/* Urdu title */
+/* =========================================
+   MAIN URDU HEADING
+========================================= */
 
 .updates-heading h2 {
-    position: relative;
-
-    display: inline-block;
 
     direction: rtl;
+    unicode-bidi: plaintext;
+
     text-align: right;
+
+    width: 100%;
+    margin: 0 0 0 auto;
+
+    font-family: 'Noto Nastaliq Urdu', serif;
 
     color: #111827;
 
-    font-size: 38px;
+    font-size: clamp(30px, 5vw, 44px);
+
     font-weight: 700;
 
     line-height: 2;
 
-    padding-bottom: 8px;
-}
+    /* Yellow on lower half of letters */
+    background:
+        linear-gradient(
+            to top,
+            #ffd84d 0%,
+            #ffd84d 30%,
+            transparent 30%,
+            transparent 100%
+        );
 
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
-/* Yellow highlight under main Urdu heading */
+    padding: 0 5px 3px;
 
-.updates-heading h2::after {
-    content: "";
-
-    position: absolute;
-
-    right: 0;
-    bottom: 3px;
-
-    width: 75%;
-    height: 7px;
-
-    background: #ffd84d;
-
-    border-radius: 10px;
-
-    z-index: -1;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
 
@@ -1668,140 +1671,294 @@ a {
 ========================================= */
 
 .news-content {
+
     flex: 1;
-}
-
-
-/* Urdu card headings */
-
-.news-content h3 {
-    position: relative;
-
-    display: inline-block;
 
     direction: rtl;
+
     text-align: right;
 
-    color: #111827;
-
-    font-size: 25px;
-    font-weight: 700;
-
-    line-height: 2;
-
-    margin: 0 0 5px;
-
-    padding-bottom: 4px;
-}
-
-
-/* Yellow line below each heading */
-
-.news-content h3::after {
-    content: "";
-
-    display: block;
-
-    width: 65%;
-
-    height: 5px;
-
-    margin-top: 2px;
-
-    margin-right: 0;
-
-    background: #ffd84d;
-
-    border-radius: 10px;
-}
-
-
-/* Urdu description */
-
-.news-content p {
-    direction: rtl;
-    text-align: right;
-
-    color: #687386;
-
-    font-size: 16px;
-
-    line-height: 2.1;
-
-    margin-top: 8px;
+    min-width: 0;
 }
 
 
 /* =========================================
-   MOBILE NEWS
+   URDU CARD HEADINGS
+========================================= */
+
+.news-content h3 {
+
+    direction: rtl;
+    unicode-bidi: plaintext;
+
+    text-align: right;
+
+    display: block;
+
+    width: 100%;
+
+    margin: 0 0 8px;
+
+    font-family: 'Noto Nastaliq Urdu', serif;
+
+    color: #111827;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    line-height: 2;
+
+    /*
+       Yellow highlight covers lower part
+       of the actual Urdu text.
+    */
+    background:
+        linear-gradient(
+            to top,
+            #ffd84d 0%,
+            #ffd84d 30%,
+            transparent 30%,
+            transparent 100%
+        );
+
+    background-repeat: no-repeat;
+
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+
+/* =========================================
+   URDU DESCRIPTION
+========================================= */
+
+.news-content p {
+
+    direction: rtl;
+    unicode-bidi: plaintext;
+
+    text-align: right;
+
+    margin: 5px 0 0;
+
+    font-family: 'Noto Nastaliq Urdu', serif;
+
+    color: #5f6877;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    line-height: 2.15;
+
+    /*
+       Same yellow lower-half highlight
+       on the Urdu description.
+    */
+    background:
+        linear-gradient(
+            to top,
+            rgba(255,216,77,0.65) 0%,
+            rgba(255,216,77,0.65) 25%,
+            transparent 25%,
+            transparent 100%
+        );
+
+    background-repeat: no-repeat;
+
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+
+/* =========================================
+   MOBILE — PERFECT RTL
 ========================================= */
 
 @media (max-width: 550px) {
 
     .updates {
-        padding-top: 75px !important;
+
+        padding-top: 70px !important;
         padding-bottom: 75px !important;
+
+        overflow: hidden;
     }
+
+
+    /* English */
 
     .updates-heading {
+
+        width: 100%;
+
         margin-bottom: 38px;
+
+        text-align: right;
     }
+
 
     .updates-heading span {
+
+        text-align: right;
+
         font-size: 12px;
+
         letter-spacing: 2.5px;
+
+        margin-bottom: 12px;
     }
+
+
+    /* MAIN URDU TITLE */
 
     .updates-heading h2 {
-        font-size: 29px;
-        line-height: 2;
+
+        direction: rtl;
+        unicode-bidi: plaintext;
+
+        text-align: right;
+
         width: 100%;
+
+        margin-left: auto;
+        margin-right: 0;
+
+        font-size: 31px;
+
+        font-weight: 700;
+
+        line-height: 2.05;
+
+        padding-right: 0;
+        padding-left: 5px;
+
+        background:
+            linear-gradient(
+                to top,
+                #ffd84d 0%,
+                #ffd84d 29%,
+                transparent 29%,
+                transparent 100%
+            );
+
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
     }
 
-    .updates-heading h2::after {
-        width: 70%;
-        height: 6px;
-    }
 
+    /* NEWS CARDS */
 
     .news-grid {
-        gap: 18px;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 18px !important;
     }
 
 
     .news-card {
-        padding: 25px 18px;
-        gap: 16px;
+
+        display: flex;
+
         align-items: flex-start;
+
+        gap: 16px;
+
+        padding: 24px 17px;
+
+        text-align: right;
     }
 
 
+    /* LEFT BADGE */
+
     .news-date {
+
         min-width: 108px;
+
         width: 108px;
+
         height: 108px;
 
         flex-shrink: 0;
     }
 
 
+    /* RIGHT URDU CONTENT */
+
+    .news-content {
+
+        flex: 1;
+
+        min-width: 0;
+
+        direction: rtl;
+
+        text-align: right;
+    }
+
+
+    /* CARD HEADING */
+
     .news-content h3 {
-        font-size: 21px;
-        line-height: 2;
-        margin-bottom: 2px;
+
+        direction: rtl;
+
+        text-align: right;
+
+        width: 100%;
+
+        margin: 0 0 6px;
+
+        font-size: 22px;
+
+        font-weight: 700;
+
+        line-height: 2.05;
+
+        background:
+            linear-gradient(
+                to top,
+                #ffd84d 0%,
+                #ffd84d 30%,
+                transparent 30%,
+                transparent 100%
+            );
+
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
     }
 
 
-    .news-content h3::after {
-        width: 75%;
-        height: 5px;
-    }
-
+    /* CARD DESCRIPTION */
 
     .news-content p {
+
+        direction: rtl;
+
+        text-align: right;
+
         font-size: 14px;
-        line-height: 2;
-        margin-top: 7px;
+
+        font-weight: 600;
+
+        line-height: 2.15;
+
+        margin-top: 4px;
+
+        background:
+            linear-gradient(
+                to top,
+                rgba(255,216,77,0.65) 0%,
+                rgba(255,216,77,0.65) 25%,
+                transparent 25%,
+                transparent 100%
+            );
+
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
     }
 
-   }
+       }
