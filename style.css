@@ -2098,3 +2098,25 @@ a {
     direction: rtl !important;
     text-align: right !important;
 }
+
+@media (max-width: 550px) {
+
+    .updates .section-heading {
+        text-align: left !important;
+        direction: ltr !important;
+    }
+
+    .updates .section-heading > span {
+        display: block;
+        width: fit-content;
+        margin-left: 0;
+        margin-right: auto;
+        text-align: left !important;
+    }
+
+    .updates .section-heading h2 {
+        direction: rtl !important;
+        text-align: right !important;
+    }
+
+   }
