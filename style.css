@@ -1980,3 +1980,104 @@ footer {
     }
 
   }
+
+/* =========================================
+   SCHOOL PHOTO - ABOUT SECTION
+========================================= */
+
+.about-image {
+    display: block;
+    position: relative;
+
+    width: 100%;
+    padding: 0;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* REAL SCHOOL IMAGE */
+
+.school-about-image {
+    display: block;
+
+    width: 100%;
+    height: 360px;
+
+    object-fit: cover;
+
+    border-radius: 22px;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.3s ease;
+}
+
+
+/* HOVER */
+
+.about-image:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.20);
+}
+
+
+.about-image:hover .school-about-image {
+    transform: scale(1.03);
+
+    filter: brightness(1.04);
+}
+
+
+/* CLICK */
+
+.about-image:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .school-about-image {
+        width: 100%;
+        height: 300px;
+
+        object-fit: cover;
+
+        border-radius: 20px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 430px) {
+
+    .school-about-image {
+        height: 260px;
+
+        border-radius: 18px;
+    }
+
+   }
