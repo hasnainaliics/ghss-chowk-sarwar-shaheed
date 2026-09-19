@@ -1402,40 +1402,43 @@ a {
     ===================================== */
 
     .about {
-        padding-top: 35px !important;
-        padding-bottom: 45px !important;
+    padding-top: 15px !important;
+    padding-bottom: 30px !important;
+    margin-top: 0 !important;
+}
 
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
+.about .section-heading {
+    margin-bottom: 18px !important;
+}
 
-    .about .section-heading {
-        margin-top: 0 !important;
-        margin-bottom: 30px !important;
-    }
+.about .section-heading h2 {
+    font-size: 30px !important;
+    line-height: 1.25 !important;
+}
 
-    .about-content {
-        grid-template-columns: 1fr !important;
-        gap: 25px !important;
-    }
+.about-content {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+}
 
-    .about-image {
-        min-height: 300px !important;
-    }
+.about-image {
+    min-height: 300px !important;
+}
 
-    .placeholder-image {
-        height: 300px !important;
-        min-height: 300px !important;
-    }
+.placeholder-image {
+    height: 300px !important;
+    min-height: 300px !important;
+}
 
-    .about-text h3 {
-        font-size: 20px !important;
-        line-height: 1.5 !important;
-    }
+.about-text {
+    margin-top: 0 !important;
+}
 
-    .about-text p {
-        font-size: 13px;
-    }
+.about-text h3 {
+    font-size: 22px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important;
+}
 
 
     /* =====================================
@@ -2120,3 +2123,71 @@ a {
     }
 
    }
+
+/* =========================================
+   ABOUT TEXT - PREMIUM HIGHLIGHT
+========================================= */
+
+.about .about-text {
+    margin-top: -25px;
+}
+
+.about .about-text h3 {
+    display: inline;
+    position: relative;
+
+    font-size: 25px;
+    line-height: 1.65;
+    font-weight: 800;
+
+    color: #172033;
+
+    background:
+        linear-gradient(
+            transparent 62%,
+            #ffd84d 62%,
+            #ffd84d 88%,
+            transparent 88%
+        );
+
+    padding: 0 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* TICK کو بھی خوبصورت رکھیں */
+.about .about-text h3::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+}
+
+/* MOBILE */
+@media (max-width: 550px) {
+
+    .about {
+        padding-top: 15px !important;
+        padding-bottom: 30px !important;
+    }
+
+    .about .section-heading {
+        margin-bottom: 18px !important;
+    }
+
+    .about .about-text {
+        margin-top: -10px;
+    }
+
+    .about .about-text h3 {
+        font-size: 22px !important;
+        line-height: 1.6 !important;
+
+        background:
+            linear-gradient(
+                transparent 63%,
+                #ffd84d 63%,
+                #ffd84d 88%,
+                transparent 88%
+            );
+    }
+       }
