@@ -18,7 +18,8 @@
       text-align: center;
     }
 
-    input, select, button {
+    select,
+    button {
       width: 100%;
       padding: 14px;
       margin: 10px 0;
@@ -36,6 +37,13 @@
       word-break: break-word;
     }
   </style>
+
+  <!-- Cloudinary Upload Widget -->
+  <script
+    src="https://upload-widget.cloudinary.com/global/all.js"
+    type="text/javascript">
+  </script>
+
 </head>
 
 <body>
@@ -51,9 +59,9 @@
     <option value="events">School Events</option>
   </select>
 
-  <input type="file" id="photo" accept="image/*">
-
-  <button id="uploadBtn">Upload Photo</button>
+  <button id="uploadBtn">
+    Choose Photo & Upload
+  </button>
 
   <p id="status"></p>
 
@@ -100,187 +108,173 @@
 
 
     /* =========================================
-       UPLOAD PHOTO
+       STATUS
     ========================================= */
 
-    document.getElementById("uploadBtn").addEventListener("click", async () => {
-
-      const fileInput = document.getElementById("photo");
-      const folder = document.getElementById("folder").value;
-      const status = document.getElementById("status");
-
-      const file = fileInput.files[0];
+    const status =
+      document.getElementById("status");
 
 
-      if (!file) {
-        status.innerText = "Pehle photo select karo.";
-        return;
-      }
+    /* =========================================
+       UPLOAD BUTTON
+    ========================================= */
+
+    document
+      .getElementById("uploadBtn")
+      .addEventListener("click", () => {
+
+        const folder =
+          document.getElementById("folder").value;
 
 
-      if (!file.type.startsWith("image/")) {
-        status.innerText = "Sirf image upload karo.";
-        return;
-      }
-
-
-      status.innerText = "Cloudinary par upload ho rahi hai...";
-
-
-      try {
-
-        /* =========================================
-           CLOUDINARY URL
-        ========================================= */
-
-        const cloudinaryURL =
-          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+        status.innerText =
+          "Photo select karo...";
 
 
         /* =========================================
-           FORM DATA
+           CLOUDINARY UPLOAD WIDGET
         ========================================= */
 
-        const formData = new FormData();
+        const widget =
+          cloudinary.createUploadWidget(
 
-        formData.append("file", file);
+            {
+              cloudName: CLOUD_NAME,
 
-        formData.append("upload_preset", UPLOAD_PRESET);
+              uploadPreset: UPLOAD_PRESET,
 
-        formData.append("folder", folder);
+              multiple: false,
 
+              maxFiles: 1,
 
-        console.log("Cloudinary URL:", cloudinaryURL);
-        console.log("Upload preset:", UPLOAD_PRESET);
-        console.log("Cloud name:", CLOUD_NAME);
+              sources: [
+                "local"
+              ],
 
+              clientAllowedFormats: [
+                "jpg",
+                "jpeg",
+                "png",
+                "webp"
+              ]
 
-        /* =========================================
-           SEND TO CLOUDINARY
-        ========================================= */
+            },
 
-        const response = await fetch(cloudinaryURL, {
-          method: "POST",
-          body: formData
-        });
-
-
-        /* =========================================
-           READ RAW RESPONSE
-        ========================================= */
-
-        const rawResponse = await response.text();
-
-        console.log("HTTP Status:", response.status);
-        console.log("Cloudinary Raw Response:", rawResponse);
-
-        console.log(
-          "X-Cld-Error:",
-          response.headers.get("X-Cld-Error")
-        );
+            async (error, result) => {
 
 
-        /* =========================================
-           CLOUDINARY ERROR
-        ========================================= */
+              /* =========================================
+                 ERROR
+              ========================================= */
 
-        if (!response.ok) {
+              if (error) {
 
-          let errorMessage = rawResponse;
+                console.error(
+                  "Cloudinary Widget Error:",
+                  error
+                );
 
-          try {
+                status.innerText =
+                  "❌ Cloudinary Error: " +
+                  (
+                    error.status ||
+                    error.message ||
+                    JSON.stringify(error)
+                  );
 
-            const errorData = JSON.parse(rawResponse);
-
-            errorMessage =
-              errorData.error?.message ||
-              rawResponse;
-
-          } catch (e) {
-            // Response JSON nahi tha
-          }
-
-
-          const headerError =
-            response.headers.get("X-Cld-Error");
+                return;
+              }
 
 
-          if (headerError) {
-            errorMessage +=
-              " | Cloudinary: " + headerError;
-          }
+              /* =========================================
+                 UPLOAD SUCCESS
+              ========================================= */
+
+              if (
+                result &&
+                result.event === "success"
+              ) {
+
+                console.log(
+                  "Cloudinary Result:",
+                  result.info
+                );
 
 
-          throw new Error(
-            "HTTP " +
-            response.status +
-            " — " +
-            errorMessage
+                const photoURL =
+                  result.info.secure_url;
+
+
+                const publicID =
+                  result.info.public_id;
+
+
+                const fileName =
+                  result.info.original_filename ||
+                  "photo";
+
+
+                status.innerText =
+                  "Cloudinary upload successful. Firebase mein save ho raha hai...";
+
+
+                try {
+
+                  /* =========================================
+                     SAVE URL TO FIREBASE
+                  ========================================= */
+
+                  await push(
+                    ref(db, folder),
+                    {
+
+                      url: photoURL,
+
+                      publicId: publicID,
+
+                      name: fileName,
+
+                      uploadedAt: Date.now()
+
+                    }
+                  );
+
+
+                  /* =========================================
+                     FINAL SUCCESS
+                  ========================================= */
+
+                  status.innerText =
+                    "✅ Photo successfully upload ho gayi!";
+
+
+                } catch (firebaseError) {
+
+                  console.error(
+                    "Firebase Error:",
+                    firebaseError
+                  );
+
+                  status.innerText =
+                    "❌ Cloudinary upload ho gayi, lekin Firebase mein save nahi hui: " +
+                    firebaseError.message;
+
+                }
+
+              }
+
+            }
+
           );
 
-        }
 
+        /* OPEN WIDGET */
 
-        /* =========================================
-           SUCCESS RESPONSE
-        ========================================= */
+        widget.open();
 
-        const data = JSON.parse(rawResponse);
-
-
-        const photoURL = data.secure_url;
-
-        const publicID = data.public_id;
-
-
-        console.log("Photo URL:", photoURL);
-        console.log("Public ID:", publicID);
-
-
-        /* =========================================
-           SAVE TO FIREBASE
-        ========================================= */
-
-        status.innerText =
-          "Cloudinary upload successful. Firebase mein save ho raha hai...";
-
-
-        await push(ref(db, folder), {
-
-          url: photoURL,
-
-          publicId: publicID,
-
-          name: file.name,
-
-          uploadedAt: Date.now()
-
-        });
-
-
-        /* =========================================
-           FINAL SUCCESS
-        ========================================= */
-
-        status.innerText =
-          "Photo successfully upload ho gayi! ✅";
-
-
-        fileInput.value = "";
-
-
-      } catch (error) {
-
-        console.error("FINAL ERROR:", error);
-
-        status.innerText =
-          "❌ Upload failed:\n" + error.message;
-
-      }
-
-    });
+      });
 
   </script>
 
 </body>
-  </html>
+</html>
