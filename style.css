@@ -1591,3 +1591,217 @@ a {
     }
 
        }
+
+/* =========================================
+   NEWS & UPDATES - URDU HIGHLIGHT
+========================================= */
+
+/* Urdu font for updates section */
+.updates-heading h2,
+.news-content h3,
+.news-content p {
+    font-family: 'Noto Nastaliq Urdu', serif;
+}
+
+
+/* MAIN UPDATES HEADING */
+
+.updates-heading {
+    margin-bottom: 45px;
+}
+
+.updates-heading span {
+    display: block;
+    color: #0b8b64;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+
+/* Urdu title */
+
+.updates-heading h2 {
+    position: relative;
+
+    display: inline-block;
+
+    direction: rtl;
+    text-align: right;
+
+    color: #111827;
+
+    font-size: 38px;
+    font-weight: 700;
+
+    line-height: 2;
+
+    padding-bottom: 8px;
+}
+
+
+/* Yellow highlight under main Urdu heading */
+
+.updates-heading h2::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: 3px;
+
+    width: 75%;
+    height: 7px;
+
+    background: #ffd84d;
+
+    border-radius: 10px;
+
+    z-index: -1;
+}
+
+
+/* =========================================
+   NEWS CARDS
+========================================= */
+
+.news-content {
+    flex: 1;
+}
+
+
+/* Urdu card headings */
+
+.news-content h3 {
+    position: relative;
+
+    display: inline-block;
+
+    direction: rtl;
+    text-align: right;
+
+    color: #111827;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    line-height: 2;
+
+    margin: 0 0 5px;
+
+    padding-bottom: 4px;
+}
+
+
+/* Yellow line below each heading */
+
+.news-content h3::after {
+    content: "";
+
+    display: block;
+
+    width: 65%;
+
+    height: 5px;
+
+    margin-top: 2px;
+
+    margin-right: 0;
+
+    background: #ffd84d;
+
+    border-radius: 10px;
+}
+
+
+/* Urdu description */
+
+.news-content p {
+    direction: rtl;
+    text-align: right;
+
+    color: #687386;
+
+    font-size: 16px;
+
+    line-height: 2.1;
+
+    margin-top: 8px;
+}
+
+
+/* =========================================
+   MOBILE NEWS
+========================================= */
+
+@media (max-width: 550px) {
+
+    .updates {
+        padding-top: 75px !important;
+        padding-bottom: 75px !important;
+    }
+
+    .updates-heading {
+        margin-bottom: 38px;
+    }
+
+    .updates-heading span {
+        font-size: 12px;
+        letter-spacing: 2.5px;
+    }
+
+    .updates-heading h2 {
+        font-size: 29px;
+        line-height: 2;
+        width: 100%;
+    }
+
+    .updates-heading h2::after {
+        width: 70%;
+        height: 6px;
+    }
+
+
+    .news-grid {
+        gap: 18px;
+    }
+
+
+    .news-card {
+        padding: 25px 18px;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+
+    .news-date {
+        min-width: 108px;
+        width: 108px;
+        height: 108px;
+
+        flex-shrink: 0;
+    }
+
+
+    .news-content h3 {
+        font-size: 21px;
+        line-height: 2;
+        margin-bottom: 2px;
+    }
+
+
+    .news-content h3::after {
+        width: 75%;
+        height: 5px;
+    }
+
+
+    .news-content p {
+        font-size: 14px;
+        line-height: 2;
+        margin-top: 7px;
+    }
+
+   }
