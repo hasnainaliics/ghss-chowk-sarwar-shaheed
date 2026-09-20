@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>School Admin Panel</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --text: #172033;
+            --muted: #718096;
+            --border: #e5eaf1;
+            --danger: #dc2626;
+            --success: #16a34a;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #111827;
+            color: white;
+            padding: 22px 15px;
+            z-index: 100;
+        }
+
+        .brand {
+            padding: 10px 12px 25px;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            margin-bottom: 20px;
+        }
+
+        .brand h2 {
+            font-size: 21px;
+        }
+
+        .brand p {
+            color: #9ca3af;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .nav-btn {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: #d1d5db;
+            padding: 13px 14px;
+            margin: 4px 0;
+            text-align: left;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 250px;
+            padding: 25px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+
+        .topbar h1 {
+            font-size: 28px;
+        }
+
+        .topbar p {
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .upload-main {
+            border: 0;
+            background: var(--primary);
+            color: white;
+            padding: 13px 20px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .upload-main:hover {
+            background: var(--primary-dark);
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            margin-top: 8px;
+        }
+
+        /* =========================
+           TOOLBAR
+        ========================= */
+
+        .toolbar {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search {
+            flex: 1;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 12px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search:focus {
+            border-color: var(--primary);
+        }
+
+        .refresh {
+            border: 0;
+            background: #eef2ff;
+            color: var(--primary);
+            border-radius: 9px;
+            padding: 0 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .photo-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,.04);
+        }
+
+        .photo-box {
+            position: relative;
+            background: #e5e7eb;
+            aspect-ratio: 4 / 3;
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-info {
+            padding: 13px;
+        }
+
+        .photo-name {
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .photo-caption {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+            min-height: 16px;
+        }
+
+        .photo-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            border: 0;
+            padding: 9px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .edit-btn {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .delete-btn {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        /* =========================
+           EMPTY / STATUS
+        ========================= */
+
+        .empty {
+            background: white;
+            border: 1px dashed var(--border);
+            border-radius: 14px;
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--muted);
+            grid-column: 1 / -1;
+        }
+
+        #status {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal-bg {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 500;
+        }
+
+        .modal {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 16px;
+            padding: 22px;
+        }
+
+        .modal h2 {
+            margin-bottom: 18px;
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 12px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cancel {
+            background: #f1f5f9;
+        }
+
+        .save {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 1000px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .upload-main {
+                width: 100%;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat {
+                padding: 14px;
+            }
+
+            .stat strong {
+                font-size: 23px;
+            }
+
+            .toolbar {
+                flex-direction: column;
+            }
+
+            .refresh {
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <h2>GHSS Admin</h2>
+            <p>School Management Panel</p>
+        </div>
+
+        <button class="nav-btn active" data-folder="all">
+            📊 Dashboard
+        </button>
+
+        <button class="nav-btn" data-folder="school-photos">
+            🏫 School Photos
+        </button>
+
+        <button class="nav-btn" data-folder="college-photos">
+            🎓 College Photos
+        </button>
+
+        <button class="nav-btn" data-folder="classroom">
+            📚 Classroom Photos
+        </button>
+
+        <button class="nav-btn" data-folder="events">
+            🎉 School Events
+        </button>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p>Manage your school gallery</p>
+            </div>
+
+            <button class="upload-main" id="uploadBtn">
+                ＋ Upload Photo
+            </button>
+
+        </div>
+
+
+        <div id="status"></div>
+
+
+        <!-- =========================
+             STATS
+        ========================= -->
+
+        <section class="stats">
+
+            <div class="stat">
+                <span>Total Photos</span>
+                <strong id="totalCount">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>School</span>
+                <strong id="schoolCount">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>College</span>
+                <strong id="collegeCount">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>Events</span>
+                <strong id="eventsCount">0</strong>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TOOLBAR
+        ========================= -->
+
+        <div class="toolbar">
+
+            <input
+                id="search"
+                class="search"
+                type="search"
+                placeholder="🔍 Search photos..."
+            >
+
+            <button class="refresh" id="refreshBtn">
+                ↻ Refresh
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             GALLERY
+        ========================= -->
+
+        <section id="gallery" class="gallery">
+
+            <div class="empty">
+                Loading photos...
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         EDIT MODAL
+    ========================= -->
+
+    <div class="modal-bg" id="modalBg">
+
+        <div class="modal">
+
+            <h2>Customize Photo</h2>
+
+            <div class="field">
+
+                <label>Photo Name</label>
+
+                <input
+                    id="editName"
+                    type="text"
+                    placeholder="Photo name"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Caption</label>
+
+                <input
+                    id="editCaption"
+                    type="text"
+                    placeholder="Photo caption"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Category</label>
+
+                <select id="editFolder">
+
+                    <option value="school-photos">
+                        School Photos
+                    </option>
+
+                    <option value="college-photos">
+                        College Photos
+                    </option>
+
+                    <option value="classroom">
+                        Classroom Photos
+                    </option>
+
+                    <option value="events">
+                        School Events
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button class="cancel" id="cancelEdit">
+                    Cancel
+                </button>
+
+                <button class="save" id="saveEdit">
+                    Save Changes
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FIREBASE
+    ========================= -->
+
+    <script type="module">
+
+        import {
+            initializeApp
+        }
+        from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+        import {
+            getDatabase,
+            ref,
+            push,
+            set,
+            update,
+            remove,
+            onValue
+        }
+        from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+
+        /* =========================================
+           FIREBASE CONFIG
+        ========================================= */
+
+        const firebaseConfig = {
+
+            apiKey:
+                "AIzaSyAcaBT2lSE6DIN9sxMak1Q8ibTU1d2-c2s",
+
+            authDomain:
+                "ghss-chowk-sarwar-shahee-3837e.firebaseapp.com",
+
+            databaseURL:
+                "https://ghss-chowk-sarwar-shahee-3837e-default-rtdb.firebaseio.com",
+
+            projectId:
+                "ghss-chowk-sarwar-shahee-3837e",
+
+            storageBucket:
+                "ghss-chowk-sarwar-shahee-3837e.firebasestorage.app",
+
+            messagingSenderId:
+                "367118817510",
+
+            appId:
+                "1:367118817510:web:a9e0a9af17b780852d8327"
+        };
+
+
+        const app =
+            initializeApp(firebaseConfig);
+
+
+        const db =
+            getDatabase(app);
+
+
+        /* =========================================
+           IMGBB
+        ========================================= */
+
+        const IMGBB_API_KEY =
+            "0575dff684237d097549a2cc3683b2bf";
+
+
+        /* =========================================
+           VARIABLES
+        ========================================= */
+
+        const folders = [
+            "school-photos",
+            "college-photos",
+            "classroom",
+            "events"
+        ];
+
+
+        let allPhotos = [];
+
+        let currentFolder = "all";
+
+        let editingPhoto = null;
+
+
+        /* =========================================
+           ELEMENTS
+        ========================================= */
+
+        const gallery =
+            document.getElementById("gallery");
+
+        const status =
+            document.getElementById("status");
+
+        const search =
+            document.getElementById("search");
+
+
+        /* =========================================
+           CATEGORY NAME
+        ========================================= */
+
+        function folderName(folder) {
+
+            const names = {
+
+                "school-photos":
+                    "School Photos",
+
+                "college-photos":
+                    "College Photos",
+
+                "classroom":
+                    "Classroom Photos",
+
+                "events":
+                    "School Events"
+
+            };
+
+            return names[folder] || folder;
+        }
+
+
+        /* =========================================
+           LOAD ALL PHOTOS
+        ========================================= */
+
+        function loadPhotos() {
+
+            allPhotos = [];
+
+            let loaded = 0;
+
+
+            folders.forEach(folder => {
+
+                onValue(
+                    ref(db, folder),
+                    snapshot => {
+
+                        /*
+                         * Remove old records
+                         * for this folder.
+                         */
+
+                        allPhotos =
+                            allPhotos.filter(
+                                item =>
+                                    item.folder !== folder
+                            );
+
+
+                        if (snapshot.exists()) {
+
+                            snapshot.forEach(child => {
+
+                                const data =
+                                    child.val();
+
+                                if (data && data.url) {
+
+                                    allPhotos.push({
+
+                                        id:
+                                            child.key,
+
+                                        folder:
+                                            folder,
+
+                                        ...data
+
+                                    });
+
+                                }
+
+                            });
+
+                        }
+
+
+                        loaded++;
+
+
+                        if (loaded >= folders.length) {
+
+                            updateDashboard();
+
+                            renderPhotos();
+
+                        }
+
+                    }
+                );
+
+            });
+
+        }
+
+
+        /* =========================================
+           DASHBOARD COUNTERS
+        ========================================= */
+
+        function updateDashboard() {
+
+            document.getElementById("totalCount")
+                .innerText =
+                allPhotos.length;
+
+
+            document.getElementById("schoolCount")
+                .innerText =
+                allPhotos.filter(
+                    p => p.folder === "school-photos"
+                ).length;
+
+
+            document.getElementById("collegeCount")
+                .innerText =
+                allPhotos.filter(
+                    p => p.folder === "college-photos"
+                ).length;
+
+
+            document.getElementById("eventsCount")
+                .innerText =
+                allPhotos.filter(
+                    p => p.folder === "events"
+                ).length;
+
+        }
+
+
+        /* =========================================
+           RENDER
+        ========================================= */
+
+        function renderPhotos() {
+
+            let photos =
+                [...allPhotos];
+
+
+            if (currentFolder !== "all") {
+
+                photos =
+                    photos.filter(
+                        p =>
+                            p.folder === currentFolder
+                    );
+
+            }
+
+
+            const query =
+                search.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (query) {
+
+                photos =
+                    photos.filter(photo =>
+
+                        (
+                            photo.name || ""
+                        )
+                        .toLowerCase()
+                        .includes(query)
+
+                        ||
+
+                        (
+                            photo.caption || ""
+                        )
+  
