@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GHSS Admin</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#f4f7fb;color:#172033}
+header{background:#2563eb;color:white;padding:20px}
+header h2{margin-bottom:5px}
+.container{padding:20px;max-width:1100px;margin:auto}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 12px #0001}
+.card b{font-size:28px;display:block;margin-top:8px}
+button{border:0;padding:11px 16px;border-radius:8px;background:#2563eb;color:white;cursor:pointer}
+.upload{background:white;padding:18px;border-radius:12px;margin:20px 0}
+input,select{padding:11px;width:100%;margin:7px 0;border:1px solid #ddd;border-radius:8px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.photo{background:white;border-radius:12px;overflow:hidden}
+.photo img{width:100%;height:170px;object-fit:cover}
+.photo div{padding:10px}
+.delete{background:#dc2626;margin-top:7px}
+@media(max-width:700px){
+.cards{grid-template-columns:repeat(2,1fr)}
+.gallery{grid-template-columns:repeat(2,1fr)}
+.photo img{height:140px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🏫 GHSS Admin Panel</h2>
+<p>Powered & Developed by Hasnain Ali</p>
+</header>
+
+<div class="container">
+
+<div class="cards">
+<div class="card">Total Photos<b id="total">0</b></div>
+<div class="card">School<b id="school">0</b></div>
+<div class="card">College<b id="college">0</b></div>
+<div class="card">Events<b id="events">0</b></div>
+</div>
+
+<div class="upload">
+<h3>Upload Photo</h3>
+<input type="file" id="file" accept="image/*">
+<select id="folder">
+<option value="school-photos">School Photos</option>
+<option value="college-photos">College Photos</option>
+<option value="classroom">Classroom</option>
+<option value="events">Events</option>
+</select>
+<br><br>
+<button onclick="upload()">＋ Upload</button>
+</div>
+
+<div class="gallery" id="gallery"></div>
+
+</div>
+
+<script type="module">
+
+import{initializeApp}from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import{getDatabase,ref,push,set,onValue,remove}
+from"https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+const app=initializeApp({
+apiKey:"AIzaSyAcaBT2lSE6DIN9sxMak1Q8ibTU1d2-c2s",
+authDomain:"ghss-chowk-sarwar-shahee-3837e.firebaseapp.com",
+databaseURL:"https://ghss-chowk-sarwar-shaheed-3837e-default-rtdb.firebaseio.com",
+projectId:"ghss-chowk-sarwar-shaheed-3837e",
+storageBucket:"ghss-chowk-sarwar-shaheed-3837e.firebasestorage.app",
+messagingSenderId:"367118817510",
+appId:"1:367118817510:web:a9e0a9af17b780852d8327"
+});
+
+const db=getDatabase(app);
+const key="0575dff684237d097549a2cc3683b2bf";
+
+let photos=[];
+
+function load(){
+
+photos=[];
+
+["school-photos","college-photos","classroom","events"].forEach(folder=>{
+
+onValue(ref(db,folder),snap=>{
+
+const data=snap.val()||{};
+
+Object.entries(data).forEach(([id,p])=>{
+photos.push({...p,id,folder});
+});
+
+show();
+
+});
+
+});
+
+}
+
+function show(){
+
+gallery.innerHTML="";
+
+photos.forEach(p=>{
+
+gallery.innerHTML+=`
+<div class="photo">
+<img src="${p.url}">
+<div>
+<b>${p.name||"Photo"}</b>
+<br>
+<small>${p.folder}</small>
+<br>
+<button class="delete" onclick="del('${p.folder}','${p.id}')">
+Delete
+</button>
+</div>
+</div>`;
+
+});
+
+total.innerText=photos.length;
+school.innerText=photos.filter(x=>x.folder=="school-photos").length;
+college.innerText=photos.filter(x=>x.folder=="college-photos").length;
+events.innerText=photos.filter(x=>x.folder=="events").length;
+
+}
+
+window.upload=async()=>{
+
+const f=file.files[0];
+
+if(!f)return alert("Photo select karo");
+
+const fd=new FormData();
+
+fd.append("key",key);
+fd.append("image",f);
+
+const r=await fetch("https://api.imgbb.com/1/upload",{
+method:"POST",
+body:fd
+});
+
+const d=await r.json();
+
+if(!d.success)return alert("Upload failed");
+
+const folder=document.getElementById("folder").value;
+
+await set(push(ref(db,folder)),{
+url:d.data.display_url||d.data.url,
+name:f.name,
+uploadedAt:Date.now()
+});
+
+alert("Photo uploaded ✅");
+
+file.value="";
+
+};
+
+window.del=async(folder,id)=>{
+
+if(confirm("Delete photo?")){
+
+await remove(ref(db,folder+"/"+id));
+
+alert("Deleted ✅");
+
+}
+
+};
+
+load();
+
+</script>
+
+</body>
+  </html>
