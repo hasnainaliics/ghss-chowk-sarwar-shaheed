@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Classroom Photos</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 25px;
+            padding: 10px 18px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .gallery {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .photo {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            background: #ddd;
+        }
+
+        #status {
+            text-align: center;
+            margin: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Classroom Photos</h1>
+
+    <a href="index.html" class="back">← Back to Home</a>
+
+    <p id="status">Photos loading...</p>
+
+    <div id="gallery" class="gallery"></div>
+
+
+    <script type="module">
+
+        import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+        import {
+            getDatabase,
+            ref,
+            onValue
+        }
+        from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcaBT2lSE6DIN9sxMak1Q8ibTU1d2-c2s",
+            authDomain: "ghss-chowk-sarwar-shahee-3837e.firebaseapp.com",
+            databaseURL: "https://ghss-chowk-sarwar-shahee-3837e-default-rtdb.firebaseio.com",
+            projectId: "ghss-chowk-sarwar-shahee-3837e",
+            storageBucket: "ghss-chowk-sarwar-shahee-3837e.firebasestorage.app",
+            messagingSenderId: "367118817510",
+            appId: "1:367118817510:web:a9e0a9af17b780852d8327"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+
+        const gallery = document.getElementById("gallery");
+        const status = document.getElementById("status");
+
+
+        onValue(ref(db, "classroom"), (snapshot) => {
+
+            gallery.innerHTML = "";
+
+            if (!snapshot.exists()) {
+                status.innerText = "No photos uploaded yet.";
+                return;
+            }
+
+            let count = 0;
+
+            snapshot.forEach((child) => {
+
+                const data = child.val();
+
+                if (data.url) {
+
+                    const img = document.createElement("img");
+
+                    img.src = data.url;
+                    img.alt = data.name || "Classroom Photo";
+                    img.className = "photo";
+                    img.loading = "lazy";
+
+                    gallery.appendChild(img);
+
+                    count++;
+                }
+            });
+
+            status.innerText =
+                count > 0 ? "" : "No photos uploaded yet.";
+
+        });
+
+    </script>
+
+</body>
+</html>
