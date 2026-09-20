@@ -1,179 +1,1102 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>School Admin Panel</title>  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  <title>School Admin Panel</title>
-
-  <style>
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
       padding: 20px;
-      max-width: 600px;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
       margin: auto;
     }
 
     h1 {
       text-align: center;
+      margin: 5px 0 25px;
+      color: #111827;
+    }
+
+    h2 {
+      margin-top: 25px;
+      margin-bottom: 12px;
     }
 
     select,
     button {
       width: 100%;
       padding: 14px;
-      margin: 10px 0;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
       box-sizing: border-box;
+    }
+
+    select {
+      background: white;
     }
 
     button {
       cursor: pointer;
-      font-size: 16px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 15px 0 20px;
+    }
+
+    .stat {
+      background: white;
+      padding: 18px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .stat-title {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #111827;
+    }
+
+    .upload-box {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    }
+
+    .selected-info {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #2563eb;
+      word-break: break-word;
     }
 
     #status {
       margin-top: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #eef2ff;
       font-weight: bold;
       word-break: break-word;
+      display: none;
     }
-  </style>
-</head>
 
-<body>
+    .progress-container {
+      width: 100%;
+      background: #e5e7eb;
+      height: 10px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 10px;
+      display: none;
+    }
 
-  <h1>School Admin Panel</h1>
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: #2563eb;
+      transition: width 0.25s ease;
+    }
 
-  <h2>Upload Photo</h2>
+    .gallery-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
 
-  <select id="folder">
-    <option value="school-photos">School Photos</option>
-    <option value="student-photos">Student Photos</option>
-    <option value="classroom">Classroom Photos</option>
-    <option value="events">School Events</option>
-  </select>
+    .gallery-title h2 {
+      margin: 0;
+    }
 
-  <button id="uploadBtn">
-    Choose Photo & Upload
-  </button>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
 
-  <p id="status"></p>
+    .photo-card {
+      position: relative;
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .photo-card.selected {
+      border-color: #ef4444;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 190px;
+      display: block;
+      object-fit: cover;
+      background: #e5e7eb;
+    }
+
+    .photo-info {
+      padding: 10px;
+    }
+
+    .photo-name {
+      font-weight: bold;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .photo-number {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .delete-area {
+      padding: 0 10px 10px;
+      display: none;
+    }
+
+    .photo-card.selected .delete-area {
+      display: block;
+    }
+
+    .delete-btn {
+      background: #dc2626;
+      margin: 0;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .empty {
+      background: white;
+      padding: 30px 15px;
+      border-radius: 14px;
+      text-align: center;
+      color: #6b7280;
+      grid-column: 1 / -1;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 25px;
+      color: #6b7280;
+      grid-column: 1 / -1;
+    }
+
+    .footer {
+      text-align: center;
+      color: #9ca3af;
+      margin-top: 30px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 12px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .photo-card img {
+        height: 145px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat {
+        padding: 14px 8px;
+      }
+
+      .stat-number {
+        font-size: 23px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .photo-card img {
+        height: 125px;
+      }
+    }
+  </style></head><body><div class="container">  <h1>School Admin Panel</h1>  <!-- =========================================
+       STATISTICS
+  ========================================== -->  <div class="stats"><div class="stat">
+  <div class="stat-title">
+    Current Section Photos
+  </div>
+
+  <div
+    class="stat-number"
+    id="sectionCount"
+  >
+    0
+  </div>
+</div>
+
+<div class="stat">
+  <div class="stat-title">
+    Total Photos
+  </div>
+
+  <div
+    class="stat-number"
+    id="totalCount"
+  >
+    0
+  </div>
+</div>
+
+  </div>  <!-- =========================================
+       UPLOAD AREA
+  ========================================== -->  <div class="upload-box"><h2>Upload Photos</h2>
+
+<select id="folder">
+
+  <option value="school-photos">
+    School Photos
+  </option>
+
+  <option value="student-photos">
+    Student Photos
+  </option>
+
+  <option value="classroom">
+    Classroom Photos
+  </option>
+
+  <option value="events">
+    School Events
+  </option>
+
+</select>
 
 
-  <script type="module">
-
-    /* =========================================
-       FIREBASE
-    ========================================= */
-
-    import { initializeApp }
-      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-    import {
-      getDatabase,
-      ref,
-      push
-    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+<button id="uploadBtn">
+  Choose Photos & Upload
+</button>
 
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAcaBT2lSE6DIN9sxMak1Q8ibTU1d2-c2s",
-      authDomain: "ghss-chowk-sarwar-shahee-3837e.firebaseapp.com",
-      databaseURL: "https://ghss-chowk-sarwar-shahee-3837e-default-rtdb.firebaseio.com",
-      projectId: "ghss-chowk-sarwar-shahee-3837e",
-      storageBucket: "ghss-chowk-sarwar-shahee-3837e.firebasestorage.app",
-      messagingSenderId: "367118817510",
-      appId: "1:367118817510:web:a9e0a9af17b780852d8327"
-    };
+<div
+  class="selected-info"
+  id="selectedInfo"
+></div>
 
 
-    const app = initializeApp(firebaseConfig);
-
-    const db = getDatabase(app);
-
-
-    /* =========================================
-       IMGBB
-    ========================================= */
-
-    const IMGBB_API_KEY =
-      "0575dff684237d097549a2cc3683b2bf";
+<div
+  class="progress-container"
+  id="progressContainer"
+>
+  <div
+    class="progress-bar"
+    id="progressBar"
+  ></div>
+</div>
 
 
-    /* =========================================
-       STATUS
-    ========================================= */
+<div id="status"></div>
 
-    const status =
-      document.getElementById("status");
+  </div>  <!-- =========================================
+       GALLERY
+  ========================================== -->  <div class="gallery-title"><h2>
+  Uploaded Photos
+</h2>
 
+  </div>  <div
+    class="gallery"
+    id="gallery"
+  >
+    <div class="loading">
+      Loading photos...
+    </div>
+  </div>  <div class="footer">
+    School Admin Panel
+  </div></div><script type="module">
 
-    /* =========================================
-       UPLOAD BUTTON
-    ========================================= */
+  /* =========================================
+     FIREBASE IMPORTS
+  ========================================= */
 
-    document
-      .getElementById("uploadBtn")
-      .addEventListener("click", () => {
-
-        const folder =
-          document.getElementById("folder").value;
-
-
-        /* =========================================
-           CREATE FILE INPUT
-        ========================================= */
-
-        const input =
-          document.createElement("input");
-
-        input.type = "file";
-
-        input.accept =
-          "image/jpeg,image/png,image/webp";
+  import {
+    initializeApp
+  }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 
-        input.onchange =
-          async function () {
+  import {
+    getDatabase,
+    ref,
+    push,
+    onValue,
+    remove
+  }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+
+  /* =========================================
+     FIREBASE CONFIG
+  ========================================= */
+
+  const firebaseConfig = {
+
+    apiKey:
+      "AIzaSyAcaBT2lSE6DIN9sxMak1Q8ibTU1d2-c2s",
+
+    authDomain:
+      "ghss-chowk-sarwar-shahee-3837e.firebaseapp.com",
+
+    databaseURL:
+      "https://ghss-chowk-sarwar-shahee-3837e-default-rtdb.firebaseio.com",
+
+    projectId:
+      "ghss-chowk-sarwar-shahee-3837e",
+
+    storageBucket:
+      "ghss-chowk-sarwar-shahee-3837e.firebasestorage.app",
+
+    messagingSenderId:
+      "367118817510",
+
+    appId:
+      "1:367118817510:web:a9e0a9af17b780852d8327"
+
+  };
+
+
+  /* =========================================
+     INITIALIZE FIREBASE
+  ========================================== */
+
+  const app =
+    initializeApp(firebaseConfig);
+
+
+  const db =
+    getDatabase(app);
+
+
+  /* =========================================
+     IMGBB API KEY
+  ========================================== */
+
+  const IMGBB_API_KEY =
+    "0575dff684237d097549a2cc3683b2bf";
+
+
+  /* =========================================
+     FOLDERS
+  ========================================== */
+
+  const folders = [
+
+    "school-photos",
+
+    "student-photos",
+
+    "classroom",
+
+    "events"
+
+  ];
+
+
+  /* =========================================
+     ELEMENTS
+  ========================================== */
+
+  const folderSelect =
+    document.getElementById("folder");
+
+  const uploadBtn =
+    document.getElementById("uploadBtn");
+
+  const selectedInfo =
+    document.getElementById("selectedInfo");
+
+  const status =
+    document.getElementById("status");
+
+  const progressContainer =
+    document.getElementById("progressContainer");
+
+  const progressBar =
+    document.getElementById("progressBar");
+
+  const gallery =
+    document.getElementById("gallery");
+
+  const sectionCount =
+    document.getElementById("sectionCount");
+
+  const totalCount =
+    document.getElementById("totalCount");
+
+
+  /* =========================================
+     DATA
+  ========================================== */
+
+  let currentPhotos = [];
+
+  let allPhotos = {};
+
+  let selectedCard = null;
+
+  let uploading = false;
+
+
+  /* =========================================
+     STATUS FUNCTION
+  ========================================== */
+
+  function showStatus(message) {
+
+    status.style.display = "block";
+
+    status.innerText = message;
+
+  }
+
+
+  /* =========================================
+     GET ALL PHOTOS
+  ========================================== */
+
+  function loadAllPhotos() {
+
+    folders.forEach(folder => {
+
+      const folderRef =
+        ref(db, folder);
+
+
+      onValue(
+        folderRef,
+        snapshot => {
+
+          const data =
+            snapshot.val() || {};
+
+
+          allPhotos[folder] =
+            data;
+
+
+          updateCounts();
+
+          renderCurrentGallery();
+
+        },
+        error => {
+
+          console.error(
+            "Firebase read error:",
+            error
+          );
+
+        }
+      );
+
+    });
+
+  }
+
+
+  /* =========================================
+     UPDATE COUNTS
+  ========================================== */
+
+  function updateCounts() {
+
+    const currentFolder =
+      folderSelect.value;
+
+
+    const currentData =
+      allPhotos[currentFolder] || {};
+
+
+    const currentTotal =
+      Object.keys(currentData).length;
+
+
+    let total =
+      0;
+
+
+    folders.forEach(folder => {
+
+      const data =
+        allPhotos[folder] || {};
+
+
+      total +=
+        Object.keys(data).length;
+
+    });
+
+
+    sectionCount.innerText =
+      currentTotal;
+
+
+    totalCount.innerText =
+      total;
+
+  }
+
+
+  /* =========================================
+     RENDER GALLERY
+  ========================================== */
+
+  function renderCurrentGallery() {
+
+    const folder =
+      folderSelect.value;
+
+
+    const data =
+      allPhotos[folder] || {};
+
+
+    const entries =
+      Object.entries(data);
+
+
+    currentPhotos =
+      entries;
+
+
+    gallery.innerHTML =
+      "";
+
+
+    if (entries.length === 0) {
+
+      gallery.innerHTML = `
+        <div class="empty">
+          Is section mein abhi koi photo upload nahi hai.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    entries.forEach(
+      ([key, photo], index) => {
+
+        const card =
+          document.createElement("div");
+
+
+        card.className =
+          "photo-card";
+
+
+        card.dataset.key =
+          key;
+
+
+        const image =
+          document.createElement("img");
+
+
+        image.src =
+          photo.url;
+
+
+        image.alt =
+          photo.name || "Uploaded Photo";
+
+
+        image.loading =
+          "lazy";
+
+
+        const info =
+          document.createElement("div");
+
+
+        info.className =
+          "photo-info";
+
+
+        const name =
+          document.createElement("div");
+
+
+        name.className =
+          "photo-name";
+
+
+        name.innerText =
+          photo.name ||
+          "Photo";
+
+
+        const number =
+          document.createElement("div");
+
+
+        number.className =
+          "photo-number";
+
+
+        number.innerText =
+          "Photo #" +
+          (index + 1);
+
+
+        info.appendChild(name);
+
+        info.appendChild(number);
+
+
+        const deleteArea =
+          document.createElement("div");
+
+
+        deleteArea.className =
+          "delete-area";
+
+
+        const deleteButton =
+          document.createElement("button");
+
+
+        deleteButton.className =
+          "delete-btn";
+
+
+        deleteButton.innerText =
+          "Delete Photo";
+
+
+        deleteButton.addEventListener(
+          "click",
+          async event => {
+
+            event.stopPropagation();
+
+            await deletePhoto(
+              folder,
+              key,
+              photo,
+              card
+            );
+
+          }
+        );
+
+
+        deleteArea.appendChild(
+          deleteButton
+        );
+
+
+        card.appendChild(image);
+
+        card.appendChild(info);
+
+        card.appendChild(deleteArea);
+
+
+        /* =====================================
+           PHOTO SELECT
+        ===================================== */
+
+        card.addEventListener(
+          "click",
+          () => {
+
+            if (
+              selectedCard &&
+              selectedCard !== card
+            ) {
+
+              selectedCard.classList.remove(
+                "selected"
+              );
+
+            }
+
+
+            card.classList.toggle(
+              "selected"
+            );
+
+
+            if (
+              card.classList.contains(
+                "selected"
+              )
+            ) {
+
+              selectedCard =
+                card;
+
+            } else {
+
+              selectedCard =
+                null;
+
+            }
+
+          }
+        );
+
+
+        gallery.appendChild(card);
+
+      }
+    );
+
+  }
+
+
+  /* =========================================
+     DELETE PHOTO
+  ========================================= */
+
+  async function deletePhoto(
+    folder,
+    key,
+    photo,
+    card
+  ) {
+
+    const confirmed =
+      confirm(
+        "Kya aap ye photo delete karna chahte hain?"
+      );
+
+
+    if (!confirmed) {
+      return;
+    }
+
+
+    try {
+
+      const photoRef =
+        ref(
+          db,
+          folder + "/" + key
+        );
+
+
+      /* =====================================
+         DELETE FROM FIREBASE
+      ===================================== */
+
+      await remove(photoRef);
+
+
+      /* =====================================
+         TRY DELETE FROM IMGBB
+      ===================================== */
+
+      if (photo.deleteUrl) {
+
+        try {
+
+          await fetch(
+            photo.deleteUrl,
+            {
+              method: "GET",
+              mode: "no-cors"
+            }
+          );
+
+        } catch (imgbbError) {
+
+          console.warn(
+            "ImgBB delete request could not be confirmed:",
+            imgbbError
+          );
+
+        }
+
+      }
+
+
+      if (
+        selectedCard === card
+      ) {
+
+        selectedCard =
+          null;
+
+      }
+
+
+      showStatus(
+        "✅ Photo successfully delete ho gayi."
+      );
+
+
+      setTimeout(
+        () => {
+
+          status.style.display =
+            "none";
+
+        },
+        2500
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "Delete Error:",
+        error
+      );
+
+
+      showStatus(
+        "❌ Photo delete nahi ho saki: " +
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* =========================================
+     UPLOAD BUTTON
+  ========================================= */
+
+  uploadBtn.addEventListener(
+    "click",
+    () => {
+
+      if (uploading) {
+        return;
+      }
+
+
+      const input =
+        document.createElement("input");
+
+
+      input.type =
+        "file";
+
+
+      input.accept =
+        "image/jpeg,image/png,image/webp";
+
+
+      /*
+       * IMPORTANT:
+       * Multiple files allowed
+       */
+
+      input.multiple =
+        true;
+
+
+      input.addEventListener(
+        "change",
+        async () => {
+
+          const files =
+            Array.from(
+              input.files || []
+            );
+
+
+          if (
+            files.length === 0
+          ) {
+
+            return;
+
+          }
+
+
+          /* =================================
+             SHOW SELECTED FILES
+          ================================= */
+
+          selectedInfo.innerText =
+            files.length +
+            " photos selected";
+
+
+          /* =================================
+             CHECK FILE SIZE
+          ================================= */
+
+          const invalidFiles =
+            files.filter(
+              file =>
+                file.size >
+                32 * 1024 * 1024
+            );
+
+
+          if (
+            invalidFiles.length > 0
+          ) {
+
+            showStatus(
+              "❌ " +
+              invalidFiles.length +
+              " photo(s) 32MB se badi hain."
+            );
+
+            return;
+
+          }
+
+
+          uploading =
+            true;
+
+
+          uploadBtn.disabled =
+            true;
+
+
+          progressContainer.style.display =
+            "block";
+
+
+          progressBar.style.width =
+            "0%";
+
+
+          const folder =
+            folderSelect.value;
+
+
+          let successCount =
+            0;
+
+
+          let failedCount =
+            0;
+
+
+          /*
+           * IMPORTANT:
+           * for...of is used intentionally.
+           *
+           * Is se photos exactly
+           * selected order mein
+           * upload/save hoti hain.
+           */
+
+          for (
+            let i = 0;
+            i < files.length;
+            i++
+          ) {
 
             const file =
-              input.files[0];
+              files[i];
 
 
-            if (!file) {
-              return;
-            }
+            const currentNumber =
+              i + 1;
 
 
-            /* =========================================
-               CHECK FILE SIZE
-            ========================================= */
-
-            if (file.size > 32 * 1024 * 1024) {
-
-              status.innerText =
-                "❌ Photo 32MB se chhoti honi chahiye.";
-
-              return;
-            }
+            showStatus(
+              "⏳ Photo " +
+              currentNumber +
+              " / " +
+              files.length +
+              " upload ho rahi hai..."
+            );
 
 
-            status.innerText =
-              "⏳ Photo ImgBB par upload ho rahi hai...";
+            /*
+             * Progress represents
+             * current batch progress.
+             */
+
+            const batchProgress =
+              Math.round(
+                (i /
+                  files.length) *
+                100
+              );
+
+
+            progressBar.style.width =
+              batchProgress + "%";
 
 
             try {
 
-              /* =========================================
-                 CREATE FORM DATA
-              ========================================= */
+              /* =============================
+                 FORM DATA
+              ============================= */
 
               const formData =
                 new FormData();
+
 
               formData.append(
                 "key",
                 IMGBB_API_KEY
               );
+
 
               formData.append(
                 "image",
@@ -181,9 +1104,9 @@
               );
 
 
-              /* =========================================
-                 UPLOAD TO IMGBB
-              ========================================= */
+              /* =============================
+                 IMGBB UPLOAD
+              ============================= */
 
               const response =
                 await fetch(
@@ -205,10 +1128,6 @@
               );
 
 
-              /* =========================================
-                 CHECK IMGBB ERROR
-              ========================================= */
-
               if (
                 !response.ok ||
                 !result.success
@@ -222,9 +1141,9 @@
               }
 
 
-              /* =========================================
-                 GET IMAGE URL
-              ========================================= */
+              /* =============================
+                 GET URL
+              ============================= */
 
               const photoURL =
                 result.data.display_url ||
@@ -232,7 +1151,8 @@
 
 
               const deleteURL =
-                result.data.delete_url || "";
+                result.data.delete_url ||
+                "";
 
 
               const fileName =
@@ -240,37 +1160,40 @@
                 "photo";
 
 
-              status.innerText =
-                "⏳ Photo upload ho gayi. Firebase mein save ho rahi hai...";
-
-
-              /* =========================================
-                 SAVE URL TO FIREBASE
-              ========================================= */
+              /* =============================
+                 SAVE TO FIREBASE
+              ============================= */
 
               await push(
                 ref(db, folder),
                 {
 
-                  url: photoURL,
+                  url:
+                    photoURL,
 
-                  name: fileName,
+                  name:
+                    fileName,
 
-                  deleteUrl: deleteURL,
+                  deleteUrl:
+                    deleteURL,
 
-                  uploadedAt: Date.now()
+                  uploadedAt:
+                    Date.now(),
+
+                  originalOrder:
+                    currentNumber
 
                 }
               );
 
 
-              /* =========================================
-                 FINAL SUCCESS
-              ========================================= */
+              successCount++;
 
-              status.innerText =
-                "✅ Photo successfully upload ho gayi!";
 
+              /*
+               * Small delay is not required.
+               * Next photo starts immediately.
+               */
 
             } catch (error) {
 
@@ -280,22 +1203,121 @@
               );
 
 
-              status.innerText =
-                "❌ Upload failed: " +
-                error.message;
+              failedCount++;
+
+
+              showStatus(
+                "❌ Photo " +
+                currentNumber +
+                " upload failed: " +
+                error.message
+              );
 
             }
 
-          };
+          }
 
 
-        /* OPEN PHONE GALLERY */
+          /* =================================
+             FINISH PROGRESS
+          ================================= */
 
-        input.click();
+          progressBar.style.width =
+            "100%";
 
-      });
 
-  </script>
+          uploading =
+            false;
+
+
+          uploadBtn.disabled =
+            false;
+
+
+          if (
+            failedCount === 0
+          ) {
+
+            showStatus(
+              "✅ " +
+              successCount +
+              " photos successfully upload ho gayi hain!"
+            );
+
+          } else {
+
+            showStatus(
+              "⚠️ " +
+              successCount +
+              " photos upload hui hain, " +
+              failedCount +
+              " failed hain."
+            );
+
+          }
+
+
+          selectedInfo.innerText =
+            successCount +
+            " photos uploaded";
+
+
+          /*
+           * Firebase listener automatically
+           * gallery + counts update karega.
+           */
+
+          setTimeout(
+            () => {
+
+              progressContainer.style.display =
+                "none";
+
+            },
+            2500
+          );
+
+        }
+      );
+
+
+      /* =================================
+         OPEN PHONE GALLERY
+      ================================= */
+
+      input.click();
+
+    }
+  );
+
+
+  /* =========================================
+     FOLDER CHANGE
+  ========================================= */
+
+  folderSelect.addEventListener(
+    "change",
+    () => {
+
+      selectedCard =
+        null;
+
+
+      updateCounts();
+
+      renderCurrentGallery();
+
+    }
+  );
+
+
+  /* =========================================
+     START
+  ========================================= */
+
+  loadAllPhotos();
+
+</script>
 
 </body>
-  </html>
+</html>
